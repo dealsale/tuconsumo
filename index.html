@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gana con TuConsumo · Willy te enseña cómo</title>
+<meta name="description" content="Compra lo que ya compras en TuConsumo y recibe bonificaciones por las compras de tu comunidad. Willy te explica el modelo paso a paso y calcula tu estimado mensual.">
+<meta name="theme-color" content="#0b2f6d">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+<!-- Open Graph / redes sociales (campañas) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="TuConsumo">
+<meta property="og:title" content="Compra, recomienda y gana con TuConsumo">
+<meta property="og:description" content="Willy te explica cómo tu consumo diario y el de tu comunidad pueden generarte bonificaciones mensuales. Calcula tu estimado.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compra, recomienda y gana con TuConsumo">
+<meta name="twitter:description" content="Willy te enseña el modelo y calcula tu estimado mensual.">
+<meta name="twitter:image" content="assets/img/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/img/willy-hero.webp">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"TuConsumo","url":"https://tuconsumo.com.co/","email":"info@tuconsumo.com.co","contactPoint":{"@type":"ContactPoint","telephone":"+57 320 564 0519","contactType":"customer support","areaServed":"CO","availableLanguage":"Spanish"}}
+</script>
+<script src="assets/js/config.js"></script>
+</head>
+<body>
+<a class="skip" href="#capitulo-1">Saltar al contenido</a>
+
+<!-- Barra de progreso del recorrido -->
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- ======================= NAV ======================= -->
+<header class="nav" id="nav">
+  <a href="#inicio" class="nav__logo" aria-label="TuConsumo, inicio">
+    <img src="assets/img/logo-tuconsumo.png" alt="TuConsumo.com.co" width="177" height="45">
+  </a>
+  <nav class="nav__links" aria-label="Secciones">
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#comunidad">Tu comunidad</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#registro">Registro</a>
+    <a href="#proveedores">Proveedores</a>
+  </nav>
+  <div class="nav__cta">
+    <span class="chapter-count" aria-hidden="true"><b id="chapNow">01</b>/<span id="chapTotal">13</span></span>
+    <a class="btn btn--coral btn--sm js-out" data-link="registro" data-track="nav_registro" href="https://tuconsumo.com.co/" target="_blank" rel="noopener">Registrarme gratis</a>
+  </div>
+</header>
+
+<!-- Índice lateral de capítulos -->
+<nav class="dots" id="dots" aria-label="Capítulos del recorrido"></nav>
+
+<main>
+
+<!-- ============ 0 · HERO ============ -->
+<section class="chapter hero" id="inicio" data-title="Inicio"
+  data-willy="¡Hola! Soy Willy 👋 Te voy a mostrar cómo tus compras de todos los días pueden convertirse en ingresos mensuales. Desliza conmigo.">
+  <div class="hero__bg" aria-hidden="true">
+    <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+    <div class="grid-lines"></div>
+  </div>
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <span class="pill reveal"><span class="pulse"></span> Willy te enseña · Marketplace colombiano</span>
+      <h1 class="hero__title">
+        <span class="line"><span class="word">Compra</span> <span class="word">lo</span> <span class="word">que</span> <span class="word">ya</span> <span class="word">compras.</span></span>
+        <span class="line"><span class="word grad">Gana</span> <span class="word grad">con</span> <span class="word">lo</span> <span class="word">que</span></span>
+        <span class="line rotator" aria-live="polite"><span class="rotator__word" id="rotator">compra tu comunidad.</span></span>
+      </h1>
+      <p class="hero__lead reveal">En <b>TuConsumo</b> compras productos reales, recomiendas lo que te gusta y, cuando te registras gratis, recibes <b>bonificaciones por las compras de quienes llegan después de ti</b> hasta en 5 capas.</p>
+      <div class="hero__actions reveal">
+        <a href="#calculadora" class="btn btn--primary btn--lg magnetic" data-track="hero_calculadora">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm1 3v3h8V6H8Zm0 6v2h2v-2H8Zm3 0v2h2v-2h-2Zm3 0v2h2v-2h-2Zm-6 4v2h2v-2H8Zm3 0v2h2v-2h-2Zm3 0v2h2v-2h-2Z"/></svg>
+          Calcular cuánto puedo ganar
+        </a>
+        <button class="btn btn--ghost btn--lg js-video" data-video="bienvenida" data-track="hero_video">
+          <span class="play-ic" aria-hidden="true"></span> Ver a Willy
+        </button>
+      </div>
+      <ul class="hero__trust reveal">
+        <li><b data-count="0" data-prefix="$">$0</b><span>inscripción</span></li>
+        <li><b data-count="0" data-prefix="$">$0</b><span>mensualidad</span></li>
+        <li><b data-count="2" data-suffix="%">2%</b><span>de vuelta en tus compras</span></li>
+        <li><b data-count="1365">1.365</b><span>personas en tu comunidad</span></li>
+      </ul>
+    </div>
+
+    <div class="hero__stage reveal">
+      <div class="willy-card tilt">
+        <img src="assets/img/willy-hero.webp" alt="Willy, el guía digital de TuConsumo" width="605" height="700" fetchpriority="high">
+        <div class="willy-card__shine" aria-hidden="true"></div>
+        <button class="willy-card__play js-video" data-video="bienvenida" aria-label="Reproducir video de bienvenida de Willy" data-track="hero_video_card">
+          <span class="play-ic" aria-hidden="true"></span>
+        </button>
+        <span class="willy-card__tag">🎬 Video de bienvenida</span>
+      </div>
+      <div class="bubble bubble--hero" role="note">
+        <b>¡Hola! Soy Willy 👋</b>
+        <span class="type" data-type="Te voy a enseñar a usar TuConsumo para generar ingresos cada mes. ¿Empezamos?"></span>
+      </div>
+      <div class="float-chip fc1"><span>🛒</span> Compra real</div>
+      <div class="float-chip fc2"><span>🤝</span> Recomienda</div>
+      <div class="float-chip fc3"><span>💰</span> Bonificaciones</div>
+    </div>
+  </div>
+  <a href="#capitulo-1" class="scroll-cue" aria-label="Desliza para continuar"><span></span>Desliza</a>
+</section>
+
+<!-- Cinta de beneficios -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Compra productos reales</span><i>✦</i><span>Inscripción $0</span><i>✦</i><span>2% de cashback</span><i>✦</i><span>5 capas de bonificación</span><i>✦</i><span>Ubicación automática</span><i>✦</i><span>70% a tu banco</span><i>✦</i><span>Proveedores colombianos</span><i>✦</i><span>Sin mensualidad</span><i>✦</i>
+    <span>Compra productos reales</span><i>✦</i><span>Inscripción $0</span><i>✦</i><span>2% de cashback</span><i>✦</i><span>5 capas de bonificación</span><i>✦</i><span>Ubicación automática</span><i>✦</i><span>70% a tu banco</span><i>✦</i><span>Proveedores colombianos</span><i>✦</i><span>Sin mensualidad</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ============ 1 · QUÉ ES ============ -->
+<section class="chapter" id="capitulo-1" data-title="¿Qué es?"
+  data-willy="TuConsumo es un marketplace: aquí compras lo mismo que comprarías en cualquier tienda, pero cada compra mueve un ecosistema que también te beneficia a ti.">
+  <div class="wrap split">
+    <div class="split__copy">
+      <span class="eyebrow reveal">Capítulo 01 · El marketplace</span>
+      <h2 class="title reveal">Un marketplace donde <span class="hl">comprar también suma</span>.</h2>
+      <p class="lead reveal">TuConsumo conecta <b>compradores, consultores y proveedores</b> en una sola plataforma digital. Las compras ocurren dentro del marketplace y la recomendación nace de la experiencia real con los productos.</p>
+      <div class="roles reveal-stagger">
+        <article class="role">
+          <span class="role__ic">🛍️</span>
+          <div><h3>Comprador</h3><p>Compra productos reales para ti y tu hogar y recibe <b>2% de vuelta</b> en tu billetera.</p></div>
+        </article>
+        <article class="role">
+          <span class="role__ic">🤝</span>
+          <div><h3>Consultor</h3><p>Se registra gratis, comparte su enlace y recibe <b>bonificaciones por las compras de su comunidad</b>.</p></div>
+        </article>
+        <article class="role">
+          <span class="role__ic">🏪</span>
+          <div><h3>Proveedor</h3><p>Vende sus productos a una comunidad con razones para <b>volver a comprar</b>.</p></div>
+        </article>
+      </div>
+    </div>
+    <div class="split__media reveal">
+      <figure class="media-card parallax">
+        <img src="assets/img/ecosistema.webp" alt="Ilustración del ecosistema TuConsumo: compradores, consultores y tiendas conectados" loading="lazy" width="1400" height="788">
+      </figure>
+      <div class="video-slot" data-video="ecosistema"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · CÓMO FUNCIONA (scroll horizontal) ============ -->
+<section class="chapter hscroll" id="como-funciona" data-title="Cómo funciona"
+  data-willy="La lógica es sencilla: compras, usas, compartes, recomiendas y participas de beneficios. Sigue deslizando y te muestro cada paso.">
+  <div class="hscroll__sticky">
+    <div class="wrap hscroll__head">
+      <span class="eyebrow">Capítulo 02 · El ciclo</span>
+      <h2 class="title">Así funciona en <span class="hl">5 pasos</span></h2>
+      <div class="hscroll__bar" aria-hidden="true"><span id="hbar"></span></div>
+    </div>
+    <div class="hscroll__track" id="htrack">
+      <article class="hcard hcard--intro">
+        <img src="assets/img/ciclo-compra.webp" alt="Willy mostrando el ciclo de compra y recomendación" loading="lazy">
+        <p class="hcard__quote">“La base de todo es el <b>consumo real de productos reales</b>.”<span>— Willy</span></p>
+      </article>
+      <article class="hcard"><span class="hcard__n">01</span><span class="hcard__ic">🛒</span><h3>Compra</h3><p>Elige productos que realmente necesitas: cuidado personal, hogar y más. Todo se compra dentro de la plataforma.</p></article>
+      <article class="hcard"><span class="hcard__n">02</span><span class="hcard__ic">✨</span><h3>Usa</h3><p>Vive la experiencia del producto. Tu opinión honesta es lo que le da valor a una recomendación.</p></article>
+      <article class="hcard"><span class="hcard__n">03</span><span class="hcard__ic">📲</span><h3>Comparte</h3><p>Comparte tu enlace con familiares, amigos y conocidos a quienes el producto les pueda servir.</p></article>
+      <article class="hcard"><span class="hcard__n">04</span><span class="hcard__ic">💬</span><h3>Recomienda</h3><p>Acompaña sin presionar. Cuando compran desde tu enlace, entran a tu comunidad.</p></article>
+      <article class="hcard hcard--accent"><span class="hcard__n">05</span><span class="hcard__ic">💰</span><h3>Gana bonificaciones</h3><p>Cada compra de tu comunidad genera puntos que se convierten en bonificaciones en tu billetera virtual.</p><a href="#comunidad" class="btn btn--light btn--sm">Ver cómo crece →</a></article>
+      <article class="hcard hcard--video"><div class="video-slot" data-video="comoFunciona"></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · COMUNIDAD 5 CAPAS ============ -->
+<section class="chapter dark" id="comunidad" data-title="Tu comunidad"
+  data-willy="Aquí está la magia: el sistema ubica automáticamente a cada persona en tu comunidad. Tú no tienes que armar nada. 4 directos, y cada uno trae a 4 más… ¡hasta 5 capas!">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap community">
+    <div class="community__copy">
+      <span class="eyebrow eyebrow--light reveal">Capítulo 03 · La perla de 5 capas</span>
+      <h2 class="title title--light reveal">Una comunidad que <span class="hl hl--teal">crece sola</span>, capa por capa.</h2>
+      <p class="lead lead--light reveal">TuConsumo usa una <b>matriz de 4 × 5</b>: tú eres el núcleo, debajo de ti hay 4 compradores, debajo de cada uno 4 más… y así hasta 5 capas. <b>La ubicación es automática</b>: si alguien que entra por tu enlace no cabe en tu primera capa, el sistema lo ubica más abajo en tu comunidad.</p>
+      <div class="layers reveal-stagger" id="layerList">
+        <button class="layer" data-layer="1"><span class="layer__dot l1"></span><b>Capa 1</b><span class="layer__n" data-count="4">4</span><small>compradores</small></button>
+        <button class="layer" data-layer="2"><span class="layer__dot l2"></span><b>Capa 2</b><span class="layer__n" data-count="16">16</span><small>compradores</small></button>
+        <button class="layer" data-layer="3"><span class="layer__dot l3"></span><b>Capa 3</b><span class="layer__n" data-count="64">64</span><small>compradores</small></button>
+        <button class="layer" data-layer="4"><span class="layer__dot l4"></span><b>Capa 4</b><span class="layer__n" data-count="256">256</span><small>compradores</small></button>
+        <button class="layer" data-layer="5"><span class="layer__dot l5"></span><b>Capa 5</b><span class="layer__n" data-count="1024">1.024</span><small>compradores</small></button>
+      </div>
+      <p class="formula reveal">1 + 4 + 16 + 64 + 256 + 1.024 = <b><span data-count="1365">1.365</span> integrantes</b></p>
+    </div>
+    <div class="community__viz reveal">
+      <div class="pearl-wrap">
+        <canvas id="pearl" width="560" height="560" aria-label="Visualización de la comunidad en 5 capas: 4, 16, 64, 256 y 1.024 compradores alrededor de un núcleo"></canvas>
+        <div class="pearl-center"><img src="assets/img/logo-tc.png" alt=""><span>Tú</span></div>
+      </div>
+      <div class="pearl-controls">
+        <button class="chip js-pearl-play" data-track="pearl_play">▶ Ver cómo se llena</button>
+        <span class="pearl-readout"><b id="pearlCount">1.364</b> personas en tu comunidad</span>
+      </div>
+    </div>
+  </div>
+  <div class="wrap nucleus">
+    <figure class="nucleus__img reveal"><img src="assets/img/red-perlas.webp" alt="Red de perlas conectadas: cada comprador puede convertirse en un nuevo núcleo" loading="lazy"></figure>
+    <div class="nucleus__copy reveal">
+      <h3>Cada comprador puede convertirse en un <span class="hl hl--teal">nuevo núcleo</span>.</h3>
+      <p>Cuando alguien de tu comunidad también se registra y comparte, empieza su propia perla. Así el ecosistema se replica en muchos núcleos conectados: una red de colaboración que crece de forma orgánica.</p>
+      <div class="video-slot video-slot--dark" data-video="comunidad"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · PUNTOS ============ -->
+<section class="chapter" id="puntos" data-title="Los puntos"
+  data-willy="¿De dónde sale el dinero? Del descuento que el proveedor da en cada compra. Ese descuento se convierte en puntos, y cada punto vale distinto según la capa.">
+  <div class="wrap">
+    <div class="center-head">
+      <span class="eyebrow reveal">Capítulo 04 · De la compra al punto</span>
+      <h2 class="title reveal">¿De dónde salen <span class="hl">tus ganancias</span>?</h2>
+      <p class="lead reveal">Los puntos se generan con <b>compras reales</b>. El proveedor otorga un descuento sobre el valor de la compra y el sistema lo convierte en puntos automáticamente.</p>
+    </div>
+    <ol class="flow reveal-stagger">
+      <li><span class="flow__ic">🧾</span><b>Compra</b><small>Alguien de tu comunidad compra</small></li>
+      <li><span class="flow__ic">🏷️</span><b>Descuento</b><small>El proveedor otorga un % sobre la compra</small></li>
+      <li><span class="flow__ic">⚙️</span><b>Cálculo automático</b><small>$1.000 de descuento = 1 punto</small></li>
+      <li><span class="flow__ic">⭐</span><b>Puntos</b><small>Se acreditan en tu cuenta</small></li>
+    </ol>
+
+    <div class="points-grid">
+      <div class="mini-calc card reveal">
+        <h3>Pruébalo tú</h3>
+        <label class="field">
+          <span>Valor de la compra</span>
+          <div class="money"><span>$</span><input type="text" inputmode="numeric" id="ptCompra" value="100.000" aria-label="Valor de la compra en pesos"></div>
+        </label>
+        <label class="field">
+          <span>Descuento del proveedor: <b id="ptDescOut">20%</b></span>
+          <input type="range" id="ptDesc" min="5" max="40" step="1" value="20">
+        </label>
+        <div class="mini-calc__result">
+          <span>Esta compra genera</span>
+          <b><span id="ptOut">20</span> puntos</b>
+        </div>
+        <p class="tiny">Ejemplo ilustrativo del material de inducción: $100.000 con 20% de descuento puede generar 20 puntos. La cantidad varía según proveedor y producto.</p>
+      </div>
+
+      <div class="base card reveal">
+        <h3>Valor del punto en cada capa</h3>
+        <p class="muted">Cada capa de tu comunidad reconoce una base de pago distinta por punto.</p>
+        <div class="bars" id="baseBars">
+          <div class="bar" style="--v:33%"><span class="bar__fill l1"></span><b>$50</b><small>Capa 1 · 4</small></div>
+          <div class="bar" style="--v:66%"><span class="bar__fill l2"></span><b>$100</b><small>Capa 2 · 16</small></div>
+          <div class="bar" style="--v:100%"><span class="bar__fill l3"></span><b>$150</b><small>Capa 3 · 64</small></div>
+          <div class="bar" style="--v:20%"><span class="bar__fill l4"></span><b>$30</b><small>Capa 4 · 256</small></div>
+          <div class="bar" style="--v:20%"><span class="bar__fill l5"></span><b>$30</b><small>Capa 5 · 1.024</small></div>
+        </div>
+        <p class="formula formula--dark">50 + 100 + 150 + 30 + 30 = <b>$360 por punto</b></p>
+      </div>
+    </div>
+
+    <div class="sim card reveal">
+      <div class="sim__head">
+        <div>
+          <span class="tag">Simulación ilustrativa del plan</span>
+          <h3>Si cada persona de tu comunidad compra <b>$100.000</b> al mes (20 puntos)…</h3>
+        </div>
+        <div class="video-slot video-slot--inline" data-video="puntos"></div>
+      </div>
+      <div class="table-scroll">
+      <table class="sim__table">
+        <thead><tr><th>Capa</th><th>Compradores</th><th>Base</th><th>Puntos</th><th>Operación</th><th>Bonificación</th></tr></thead>
+        <tbody>
+          <tr><td><i class="layer__dot l1"></i>Capa 1</td><td>4</td><td>$50</td><td>20</td><td>4 × 50 × 20</td><td>$4.000</td></tr>
+          <tr><td><i class="layer__dot l2"></i>Capa 2</td><td>16</td><td>$100</td><td>20</td><td>16 × 100 × 20</td><td>$32.000</td></tr>
+          <tr><td><i class="layer__dot l3"></i>Capa 3</td><td>64</td><td>$150</td><td>20</td><td>64 × 150 × 20</td><td>$192.000</td></tr>
+          <tr><td><i class="layer__dot l4"></i>Capa 4</td><td>256</td><td>$30</td><td>20</td><td>256 × 30 × 20</td><td>$153.600</td></tr>
+          <tr><td><i class="layer__dot l5"></i>Capa 5</td><td>1.024</td><td>$30</td><td>20</td><td>1.024 × 30 × 20</td><td>$614.400</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="5">Total mensual de la simulación</td><td><b data-count="996000" data-prefix="$">$996.000</b></td></tr></tfoot>
+      </table>
+      </div>
+      <p class="tiny">Ejemplo pedagógico, no promesa de ingreso. Las bonificaciones dependen de compras reales, actividad, posición y condiciones vigentes del plan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · CALCULADORA ============ -->
+<section class="chapter calc-chapter" id="calculadora" data-title="Calculadora"
+  data-willy="¡Ahora juega tú! Mueve las barras: cuántas personas tiene tu comunidad, cuánto compran al mes y el descuento promedio. Yo te calculo el estimado.">
+  <div class="wrap">
+    <div class="center-head">
+      <span class="eyebrow reveal">Capítulo 05 · Tu estimado</span>
+      <h2 class="title reveal">Calcula cuánto podrías <span class="hl">recibir cada mes</span></h2>
+      <p class="lead reveal">Mueve los controles y mira cómo crece tu comunidad y tu bonificación en tiempo real.</p>
+    </div>
+
+    <div class="calc reveal">
+      <div class="calc__inputs card">
+        <div class="calc__group">
+          <div class="calc__label">
+            <span>Personas en tu comunidad</span>
+            <output id="cMembersOut">84</output>
+          </div>
+          <input type="range" id="cMembers" min="0" max="1364" step="1" value="84" aria-describedby="cMembersHelp">
+          <div class="chips" role="group" aria-label="Escenarios rápidos">
+            <button class="chip" data-members="4">Arranque · 4</button>
+            <button class="chip" data-members="20">Creciendo · 20</button>
+            <button class="chip is-on" data-members="84">Activa · 84</button>
+            <button class="chip" data-members="340">Sólida · 340</button>
+            <button class="chip" data-members="1364">Completa · 1.364</button>
+          </div>
+          <small id="cMembersHelp" class="muted">El sistema llena tu comunidad capa por capa automáticamente.</small>
+        </div>
+
+        <div class="calc__group">
+          <div class="calc__label"><span>Compra mensual promedio por persona</span><output id="cBuyOut">$100.000</output></div>
+          <input type="range" id="cBuy" min="20000" max="600000" step="10000" value="100000">
+        </div>
+
+        <div class="calc__group">
+          <div class="calc__label"><span>Descuento promedio del proveedor</span><output id="cDiscOut">20%</output></div>
+          <input type="range" id="cDisc" min="5" max="40" step="1" value="20">
+        </div>
+
+        <div class="calc__group">
+          <div class="calc__label"><span>Tu compra personal al mes</span><output id="cOwnOut">$150.000</output></div>
+          <input type="range" id="cOwn" min="0" max="1500000" step="10000" value="150000">
+          <small class="muted">Tu compra mensual te mantiene <b>activo</b> y te da 2% de vuelta.</small>
+        </div>
+
+        <div class="calc__layers" id="calcLayers" aria-label="Llenado por capa"></div>
+      </div>
+
+      <div class="calc__result card card--dark" aria-live="polite">
+        <div class="calc__willy">
+          <img src="assets/img/willy-hero.webp" alt="" loading="lazy">
+          <p id="calcSays">¡Con 84 personas ya tienes 3 capas en movimiento!</p>
+        </div>
+        <span class="calc__cap">Bonificación estimada al mes</span>
+        <div class="calc__total"><span id="cTotal">$0</span></div>
+        <div class="calc__split">
+          <div><span class="dot dot--teal"></span><small>70% a tu cuenta bancaria</small><b id="cBank">$0</b></div>
+          <div><span class="dot dot--coral"></span><small>30% para compras en el marketplace</small><b id="cRebuy">$0</b></div>
+        </div>
+        <ul class="calc__lines">
+          <li><span>Bonificación por tu comunidad</span><b id="cNet">$0</b></li>
+          <li><span>+ 2% de tu compra personal</span><b id="cCash">$0</b></li>
+          <li><span>Puntos por compra de cada persona</span><b id="cPts">0</b></li>
+          <li class="calc__year"><span>Estimado en 12 meses</span><b id="cYear">$0</b></li>
+        </ul>
+        <div class="calc__bars" id="calcBars"></div>
+        <div class="calc__actions">
+          <a class="btn btn--coral btn--block js-out" data-link="registro" data-track="calc_registro" href="https://tuconsumo.com.co/" target="_blank" rel="noopener">Quiero empezar ahora</a>
+          <a class="btn btn--glass btn--block" id="calcShare" data-track="calc_whatsapp" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
+            Enviarme este cálculo por WhatsApp
+          </a>
+        </div>
+        <p class="tiny tiny--light">Estimación ilustrativa basada en el material de inducción de TuConsumo (bases por punto $50 / $100 / $150 / $30 / $30). No es una promesa ni garantía de ingresos: los valores reales dependen de compras efectivas, actividad, posición, proveedor, producto y condiciones vigentes del plan.</p>
+      </div>
+    </div>
+    <div class="calc__video reveal"><div class="video-slot" data-video="calculadora"></div></div>
+  </div>
+</section>
+
+<!-- ============ 6 · BILLETERA ============ -->
+<section class="chapter dark" id="billetera" data-title="Tu billetera"
+  data-willy="Todo lo que ganas llega a tu billetera virtual. El 70% lo puedes pasar a tu banco y el 30% lo usas para comprar en el marketplace. ¡Así el ciclo nunca para!">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap split split--rev">
+    <div class="split__copy">
+      <span class="eyebrow eyebrow--light reveal">Capítulo 06 · Billetera virtual</span>
+      <h2 class="title title--light reveal">Tu dinero llega a tu <span class="hl hl--teal">billetera virtual</span>.</h2>
+      <div class="wallet-feats reveal-stagger">
+        <article class="wfeat">
+          <span class="wfeat__big">2%</span>
+          <div><h3>Beneficio personal</h3><p>Cada compra personal acredita el 2% en tu billetera virtual. Aplica a todos los productos.</p></div>
+        </article>
+        <article class="wfeat">
+          <span class="wfeat__big">70/30</span>
+          <div><h3>Regla de recompra</h3><p>De cada $100.000 en tu billetera: <b>$70.000</b> son transferibles a tu cuenta bancaria y <b>$30.000</b> quedan disponibles para compras en el marketplace. Es el <i>motor de recomprabilidad infinita</i>.</p></div>
+        </article>
+      </div>
+      <div class="video-slot video-slot--dark reveal" data-video="billetera"></div>
+    </div>
+    <div class="split__media reveal">
+      <div class="donut-card">
+        <svg viewBox="0 0 200 200" class="donut" aria-label="70% transferible al banco, 30% para recompra">
+          <circle cx="100" cy="100" r="80" class="donut__bg"/>
+          <circle cx="100" cy="100" r="80" class="donut__a" pathLength="100"/>
+          <circle cx="100" cy="100" r="80" class="donut__b" pathLength="100"/>
+        </svg>
+        <div class="donut__center"><small>Billetera</small><b>$100.000</b></div>
+        <div class="donut__legend">
+          <span><i class="dot dot--teal"></i> $70.000 a tu banco</span>
+          <span><i class="dot dot--coral"></i> $30.000 para recomprar</span>
+        </div>
+      </div>
+      <div class="cycle-chip">Compra → 2% → billetera → recompra ♻️</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 · ACTIVO / INACTIVO ============ -->
+<section class="chapter" id="actividad" data-title="Mantente activo"
+  data-willy="Una regla clave: para cobrar tus bonificaciones necesitas estar activo. Es tan fácil como hacer una compra personal en el mes. Sin monto mínimo.">
+  <div class="wrap split">
+    <div class="split__copy">
+      <span class="eyebrow reveal">Capítulo 07 · Actividad</span>
+      <h2 class="title reveal">Mantente <span class="hl">activo</span> con una compra al mes.</h2>
+      <p class="lead reveal">El autoconsumo es la compra personal que mantiene viva tu actividad. <b>No existe monto mínimo</b>: compras según tu necesidad personal o familiar.</p>
+      <div class="status reveal-stagger">
+        <article class="status__card status__card--on">
+          <span class="status__badge">● Activo</span>
+          <p>Hiciste una compra personal dentro del mes calendario.</p>
+          <ul><li>Acumulas bonificaciones</li><li>Puedes retirarlas</li><li>Recibes tu 2% personal</li></ul>
+        </article>
+        <article class="status__card status__card--off">
+          <span class="status__badge">❚❚ En pausa</span>
+          <p>Pasan más de dos meses sin compra.</p>
+          <ul><li>No sales del sistema</li><li>No pierdes tu posición</li><li>Te reactivas con una nueva compra</li></ul>
+        </article>
+      </div>
+      <p class="note reveal">💡 Piensa la inactividad como un <b>beneficio en pausa</b>, no como dinero perdido. Mientras estés inactivo no puedes retirar bonificaciones.</p>
+    </div>
+    <div class="split__media reveal">
+      <figure class="media-card parallax"><img src="assets/img/activo-inactivo.webp" alt="Willy activo comprando cada mes y Willy en pausa" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 · REGISTRO ============ -->
+<section class="chapter soft" id="registro" data-title="Regístrate"
+  data-willy="¿Listo? Registrarte es gratis. Te muestro los pasos y los documentos que necesitas. Ojo con el RUT: debe tener el código 8299.">
+  <div class="wrap">
+    <div class="center-head">
+      <span class="eyebrow reveal">Capítulo 08 · Empieza hoy</span>
+      <h2 class="title reveal">Crea tu cuenta de beneficios <span class="hl">gratis</span></h2>
+      <p class="lead reveal">La vinculación es gratuita y se hace paso a paso dentro de la plataforma. Registrarte te habilita para retirar beneficios y gestionar tu cuenta.</p>
+    </div>
+
+    <ol class="timeline reveal-stagger">
+      <li><span>1</span><b>Enlace</b><small>Recibes el enlace de quien te recomendó y abres la plataforma.</small></li>
+      <li><span>2</span><b>Plataforma</b><small>Entras a <i>“Compra recomienda y gana”</i>.</small></li>
+      <li><span>3</span><b>Registro</b><small>Eliges <i>“Regístrame para recibir bonificación”</i>.</small></li>
+      <li><span>4</span><b>Documentos</b><small>Completas tu cuenta y adjuntas documentos.</small></li>
+      <li><span>5</span><b>Validación</b><small>Aceptas términos y política de privacidad.</small></li>
+      <li><span>6</span><b>BackOffice</b><small>¡Listo! Gestionas tu cuenta y tus beneficios.</small></li>
+    </ol>
+
+    <div class="reg-grid">
+      <div class="card docs reveal">
+        <h3>Documentos que necesitas</h3>
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" aria-controls="docN" id="tabN" class="tab is-on">Persona natural</button>
+          <button role="tab" aria-selected="false" aria-controls="docJ" id="tabJ" class="tab">Persona jurídica</button>
+        </div>
+        <ul class="checklist" id="docN" role="tabpanel" aria-labelledby="tabN">
+          <li>RUT con código CIIU 8299</li><li>Cédula ampliada al 150%</li><li>Certificación bancaria</li>
+        </ul>
+        <ul class="checklist" id="docJ" role="tabpanel" aria-labelledby="tabJ" hidden>
+          <li>RUT con código CIIU 8299</li><li>Cámara de Comercio actualizada</li><li>Cédula del representante legal</li><li>Certificación bancaria</li>
+        </ul>
+        <p class="muted small">Datos del formulario: nombre, cédula, correo, celular y dirección. La información veraz y completa acelera tu validación.</p>
+      </div>
+      <div class="card rut reveal">
+        <img src="assets/img/rut-8299.webp" alt="Ejemplo de RUT con la actividad económica 8299" loading="lazy">
+        <div>
+          <h3>Revisa tu RUT: <span class="hl">CIIU 8299</span></h3>
+          <p class="muted small">“Otras actividades de servicio de apoyo a las empresas n.c.p.”. Si no tienes RUT o necesitas actualizarlo, haz el trámite ante la DIAN antes de registrarte.</p>
+        </div>
+      </div>
+      <div class="card zero reveal">
+        <div class="zero__row"><span>Inscripción</span><b>$0</b></div>
+        <div class="zero__row"><span>Permanencia mensual</span><b>$0</b></div>
+        <div class="zero__row"><span>Cuenta de beneficios</span><b>Gratis</b></div>
+        <p class="muted small">La participación se basa en compras reales, no en pagar por pertenecer.</p>
+      </div>
+    </div>
+
+    <div class="reg-cta reveal">
+      <div class="video-slot" data-video="registro"></div>
+      <div class="reg-cta__box">
+        <h3>Tu primera compra lo inicia todo</h3>
+        <p>Entra → elige tus productos → agrégalos al carrito → confirma. Tu compra queda registrada y tu actividad comienza.</p>
+        <div class="btn-row">
+          <a class="btn btn--coral btn--lg js-out" data-link="registro" data-track="registro_cta" href="https://tuconsumo.com.co/" target="_blank" rel="noopener">Registrarme gratis ↗</a>
+          <a class="btn btn--ghost btn--lg js-out" data-link="marketplace" data-track="registro_marketplace" href="https://tuconsumo.com.co/" target="_blank" rel="noopener">Ver productos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9 · PROVEEDORES ============ -->
+<section class="chapter dark" id="proveedores" data-title="Proveedores"
+  data-willy="¿Tienes un negocio o una marca? En TuConsumo vendes a una comunidad que tiene razones para volver a comprar. Sin inscripción ni mensualidad.">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="split">
+      <div class="split__copy">
+        <span class="eyebrow eyebrow--light reveal">Capítulo 09 · Para proveedores</span>
+        <h2 class="title title--light reveal">Vende, fideliza y <span class="hl hl--teal">vuelve a vender</span> sin empezar de cero.</h2>
+        <p class="lead lead--light reveal">Conseguir compradores nuevos cuesta tiempo, publicidad y esfuerzo. En TuConsumo, la comunidad recibe cashback y bonificaciones: <b>tiene razones económicas para volver</b> y recomendar tus productos.</p>
+        <div class="vs reveal">
+          <div class="vs__col"><small>Adquisición tradicional</small><p>Publicidad → venta → volver a pagar publicidad por otro comprador.</p></div>
+          <div class="vs__col vs__col--on"><small>Modelo TuConsumo</small><p>Compra → beneficios → recompra → recomendación → nuevos compradores.</p></div>
+        </div>
+      </div>
+      <div class="split__media reveal">
+        <figure class="media-card media-card--dark parallax"><img src="assets/img/proveedor-tienda.webp" alt="Proveedora mostrando su tienda en el marketplace TuConsumo" loading="lazy"></figure>
+      </div>
+    </div>
+
+    <div class="prov-stats reveal-stagger">
+      <div><b>$0</b><span>Inscripción</span></div>
+      <div><b>$0</b><span>Mensualidad</span></div>
+      <div><b>%</b><span>Comisión negociada solo sobre ventas efectivas</span></div>
+      <div><b>1–3</b><span>días de despacho esperado</span></div>
+    </div>
+
+    <ol class="prov-flow reveal-stagger">
+      <li><b>Publicas</b><small>Producto, 6 fotos, precio y stock real</small></li>
+      <li><b>Compran</b><small>La plataforma recauda</small></li>
+      <li><b>Despachas</b><small>Con transportadora enlazada</small></li>
+      <li><b>Confirman</b><small>Se espera la venta efectiva</small></li>
+      <li><b>Liquidamos</b><small>Saldo neto a tu cuenta</small></li>
+    </ol>
+
+    <div class="prov-bottom">
+      <div class="who reveal">
+        <div><h4>TuConsumo conecta y recauda</h4><ul><li>Exhibe y promociona productos</li><li>Facilita la plataforma y el BackOffice</li><li>Recauda ventas</li><li>Acompaña marketing y tráfico</li></ul></div>
+        <div><h4>Tú administras producto y entrega</h4><ul><li>Calidad y disponibilidad</li><li>Facturación al comprador</li><li>Alistamiento y despacho</li><li>Garantías y postventa</li></ul></div>
+      </div>
+      <div class="prov-cta reveal">
+        <div class="video-slot video-slot--dark" data-video="proveedores"></div>
+        <a class="btn btn--coral btn--lg btn--block js-wa" data-msg="Hola, tengo un negocio y quiero agendar una reunión comercial para vender en TuConsumo." data-track="proveedor_reunion" href="#" target="_blank" rel="noopener">Agendar reunión comercial</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · BUENAS PRÁCTICAS ============ -->
+<section class="chapter" id="practicas" data-title="Buenas prácticas"
+  data-willy="Recomendar no es presionar. Habla desde tu experiencia, sé transparente y nunca prometas ingresos garantizados. Así se construye confianza.">
+  <div class="wrap">
+    <div class="center-head">
+      <span class="eyebrow reveal">Capítulo 10 · Con confianza</span>
+      <h2 class="title reveal">Recomendar es <span class="hl">compartir</span>, no presionar.</h2>
+    </div>
+    <div class="dos reveal-stagger">
+      <div class="dos__col dos__col--yes">
+        <h3>✓ Buenas prácticas</h3>
+        <ul><li>Habla desde tu experiencia real.</li><li>Sé transparente y explica con claridad.</li><li>Acompaña sin presionar.</li><li>Usa mensajes autorizados por TuConsumo.</li></ul>
+      </div>
+      <div class="dos__col dos__col--no">
+        <h3>✕ Lo que no debes hacer</h3>
+        <ul><li>Prometer ingresos garantizados.</li><li>Presionar a otros para comprar.</li><li>Engañar o manipular información.</li><li>Usar material no autorizado o manipular el sistema.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 · FAQ ============ -->
+<section class="chapter soft" id="preguntas" data-title="Preguntas"
+  data-willy="Estas son las preguntas que más me hacen. Si tienes otra, escríbenos por WhatsApp y con gusto te ayudamos.">
+  <div class="wrap faq-wrap">
+    <div class="faq-side reveal">
+      <span class="eyebrow">Capítulo 11 · Willy responde</span>
+      <h2 class="title">Preguntas frecuentes</h2>
+      <img src="assets/img/willy-lina.webp" alt="Willy y Lina, el equipo de acompañamiento de TuConsumo" loading="lazy">
+      <p class="muted">¿No encuentras tu respuesta? <b>Lina</b>, nuestra asistente de soporte, te acompaña con devoluciones, soporte técnico y PQR.</p>
+      <a class="btn btn--primary js-wa" data-msg="Hola Willy, tengo una pregunta sobre TuConsumo." data-track="faq_whatsapp" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+    <div class="faq reveal-stagger">
+      <details open><summary>¿Qué es TuConsumo?</summary><p>Es un marketplace digital colombiano que conecta compradores, consultores, proveedores y productos dentro de un ecosistema basado en consumo real, recomendación y beneficios.</p></details>
+      <details><summary>¿Cómo gano dinero si solo compro?</summary><p>Al comprar recibes 2% de vuelta en tu billetera. Si además te registras como consultor (gratis) y compartes tu enlace, recibes bonificaciones por las compras de las personas que entran a tu comunidad, hasta 5 capas de profundidad.</p></details>
+      <details><summary>¿Tengo que vender o buscar a muchas personas?</summary><p>No. El sistema ubica automáticamente a las personas en tu comunidad (4 por núcleo). Puedes comprar para ti, compartir tu experiencia y decidir hasta dónde participar. Recomendar debe ser natural y sin presión.</p></details>
+      <details><summary>¿Cuánto cuesta inscribirme?</summary><p>Nada. La inscripción cuesta $0 y no hay mensualidad obligatoria. La participación se basa en compras reales.</p></details>
+      <details><summary>¿Con una sola compra recibo ingresos para siempre?</summary><p>No. La primera compra inicia tu participación, pero para retirar bonificaciones debes mantenerte activo con una compra personal en el mes. Los beneficios dependen de compras reales, actividad y condiciones vigentes del plan.</p></details>
+      <details><summary>¿Cómo se calculan las bonificaciones?</summary><p>Cada compra genera puntos según el descuento del proveedor ($1.000 de descuento = 1 punto, aprox.). Cada punto se paga según la capa: $50 (capa 1), $100 (capa 2), $150 (capa 3), $30 (capas 4 y 5). Los montos pueden variar según producto, proveedor y reglas del sistema.</p></details>
+      <details><summary>¿Cómo retiro mi dinero?</summary><p>Tus bonificaciones llegan a tu billetera virtual: el 70% es transferible a tu cuenta bancaria y el 30% queda disponible para compras en el marketplace.</p></details>
+      <details><summary>¿Qué necesito para registrarme?</summary><p>Completar el formulario y adjuntar RUT (con CIIU 8299), cédula al 150% y certificación bancaria. Si eres persona jurídica, también Cámara de Comercio y cédula del representante legal.</p></details>
+      <details><summary>¿Qué pasa si dejo de comprar?</summary><p>Si pasan más de dos meses sin compra quedas inactivo: no sales del sistema ni pierdes tu posición, pero no puedes retirar bonificaciones hasta reactivarte con una nueva compra.</p></details>
+      <details><summary>Tengo un negocio, ¿puedo vender en TuConsumo?</summary><p>Sí. No pagas inscripción ni mensualidad; la comisión se negocia y se aplica solo sobre ventas efectivas. Agenda una reunión comercial y te acompañamos con el contrato, el BackOffice y la capacitación.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 · CIERRE ============ -->
+<section class="chapter final" id="empieza" data-title="Empieza"
+  data-willy="¡Llegamos al final del recorrido! Tu participación comienza con una compra real. Te espero adentro. 🚀">
+  <div class="hero__bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
+  <div class="wrap final__inner">
+    <img class="final__img reveal" src="assets/img/willy-lina.webp" alt="" loading="lazy">
+    <span class="pill reveal"><span class="pulse"></span> Tu siguiente paso</span>
+    <h2 class="final__title reveal">Tu participación comienza con <span class="grad">una compra real</span>.</h2>
+    <p class="lead reveal">Entra → elige → compra → participa. Regístrate gratis y empieza a construir tu comunidad hoy.</p>
+    <div class="btn-row btn-row--center reveal">
+      <a class="btn btn--coral btn--lg magnetic js-out" data-link="registro" data-track="final_registro" href="https://tuconsumo.com.co/" target="_blank" rel="noopener">Registrarme gratis ↗</a>
+      <a class="btn btn--primary btn--lg js-out" data-link="marketplace" data-track="final_marketplace" href="https://tuconsumo.com.co/" target="_blank" rel="noopener">Ir al marketplace</a>
+      <a class="btn btn--ghost btn--lg js-wa" data-msg="Hola, vi a Willy y quiero que me expliquen cómo empezar en TuConsumo." data-track="final_whatsapp" href="#" target="_blank" rel="noopener">Hablar con un asesor</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <img src="assets/img/logo-tuconsumo.png" alt="TuConsumo.com.co" width="160" height="41">
+      <p>Un ecosistema digital basado en consumo real y colaboración.</p>
+    </div>
+    <div>
+      <h4>Soporte</h4>
+      <p><a class="js-wa" data-msg="Hola, necesito soporte de TuConsumo." href="#" target="_blank" rel="noopener">WhatsApp: 320 564 05 19</a><br>
+      <a href="mailto:info@tuconsumo.com.co">info@tuconsumo.com.co</a></p>
+    </div>
+    <div>
+      <h4>Recorrido</h4>
+      <p><a href="#como-funciona">Cómo funciona</a> · <a href="#calculadora">Calculadora</a> · <a href="#registro">Registro</a> · <a href="#proveedores">Proveedores</a></p>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="disclaimer">Las cifras, simulaciones y estimaciones de esta página son ilustrativas y se basan en el material de inducción de TuConsumo. No constituyen promesa, garantía ni proyección de ingresos. Las bonificaciones dependen de compras reales y efectivas, del estado de actividad, de la posición dentro de la comunidad, del proveedor, del producto y de los términos y condiciones vigentes del plan. Consulta siempre los términos actualizados en la plataforma antes de participar.</p>
+    <p class="copy">© <span id="year">2026</span> TuConsumo.com.co · Colombia</p>
+  </div>
+</footer>
+
+<!-- ======== Willy acompañante (narra cada capítulo) ======== -->
+<aside class="willy-dock" id="willyDock" aria-live="polite">
+  <div class="willy-dock__bubble" id="willyBubble">
+    <button class="willy-dock__close" id="willyClose" aria-label="Ocultar mensaje de Willy">×</button>
+    <small id="willyChapter">Inicio</small>
+    <p id="willyText"></p>
+    <div class="willy-dock__actions">
+      <button class="link-btn js-video" id="willyVideoBtn" data-video="bienvenida">▶ Ver video</button>
+      <button class="link-btn" id="willyNext">Siguiente →</button>
+    </div>
+  </div>
+  <button class="willy-dock__avatar" id="willyAvatar" aria-label="Hablar con Willy">
+    <img src="assets/img/willy-hero.webp" alt="">
+    <span class="willy-dock__ping"></span>
+  </button>
+</aside>
+
+<!-- CTA fijo para móvil -->
+<div class="mobile-cta" id="mobileCta">
+  <a href="#calculadora" class="btn btn--primary" data-track="mobile_calc">Calcular</a>
+  <a class="btn btn--coral js-out" data-link="registro" data-track="mobile_registro" href="https://tuconsumo.com.co/" target="_blank" rel="noopener">Registrarme gratis</a>
+</div>
+
+<!-- Modal de video -->
+<div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoTitle" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__box">
+    <div class="modal__head"><h3 id="videoTitle">Video</h3><button class="modal__x" data-close aria-label="Cerrar video">×</button></div>
+    <div class="modal__frame" id="videoFrame"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
