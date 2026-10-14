@@ -123,7 +123,7 @@
       $$(".type[data-type]", el).forEach((t) => { if (!t.dataset.started) { t.dataset.started = 1; setTimeout(() => typeInto(t, t.dataset.type), 600); } });
       io.unobserve(el);
     });
-  }, { threshold: 0.18, rootMargin: "0px 0px -6% 0px" });
+  }, { threshold: 0.01, rootMargin: "0px 0px -4% 0px" });
   $$(".reveal, .reveal-stagger, [data-count], .hero__stage").forEach((el) => io.observe(el));
 
   /* ------------------------------------------------------------------
