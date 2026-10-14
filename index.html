@@ -162,7 +162,12 @@
     <div class="wrap hscroll__head">
       <span class="eyebrow">Capítulo 02 · El ciclo</span>
       <h2 class="title">Así funciona en <span class="hl">5 pasos</span></h2>
-      <div class="hscroll__bar" aria-hidden="true"><span id="hbar"></span></div>
+      <div class="hscroll__ctrl">
+        <span class="hscroll__hint" aria-hidden="true">Desliza <i>→</i></span>
+        <div class="hscroll__bar" aria-hidden="true"><span id="hbar"></span></div>
+        <button class="hs-btn" id="hsPrev" aria-label="Paso anterior">←</button>
+        <button class="hs-btn" id="hsNext" aria-label="Paso siguiente">→</button>
+      </div>
     </div>
     <div class="hscroll__track" id="htrack">
       <article class="hcard hcard--intro">
@@ -500,6 +505,13 @@
   </div>
 </section>
 
+<div class="marquee marquee--rev" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Cuidado personal</span><i>●</i><span>Hogar</span><i>●</i><span>Belleza</span><i>●</i><span>Tecnología</span><i>●</i><span>Bienestar</span><i>●</i><span>Mascotas</span><i>●</i><span>Despacho en 1 a 3 días</span><i>●</i><span>Pagos seguros</span><i>●</i>
+    <span>Cuidado personal</span><i>●</i><span>Hogar</span><i>●</i><span>Belleza</span><i>●</i><span>Tecnología</span><i>●</i><span>Bienestar</span><i>●</i><span>Mascotas</span><i>●</i><span>Despacho en 1 a 3 días</span><i>●</i><span>Pagos seguros</span><i>●</i>
+  </div>
+</div>
+
 <!-- ============ 9 · PROVEEDORES ============ -->
 <section class="chapter dark" id="proveedores" data-title="Proveedores"
   data-willy="¿Tienes un negocio o una marca? En TuConsumo vendes a una comunidad que tiene razones para volver a comprar. Sin inscripción ni mensualidad.">
@@ -521,8 +533,8 @@
     </div>
 
     <div class="prov-stats reveal-stagger">
-      <div><b>$0</b><span>Inscripción</span></div>
-      <div><b>$0</b><span>Mensualidad</span></div>
+      <div><b data-count="0" data-prefix="$">$0</b><span>Inscripción</span></div>
+      <div><b data-count="0" data-prefix="$">$0</b><span>Mensualidad</span></div>
       <div><b>%</b><span>Comisión negociada solo sobre ventas efectivas</span></div>
       <div><b>1–3</b><span>días de despacho esperado</span></div>
     </div>
@@ -639,7 +651,7 @@
 <!-- ======== Willy acompañante (narra cada capítulo) ======== -->
 <aside class="willy-dock" id="willyDock" aria-live="polite">
   <div class="willy-dock__bubble" id="willyBubble">
-    <button class="willy-dock__close" id="willyClose" aria-label="Ocultar mensaje de Willy">×</button>
+    <button class="willy-dock__close x-ic" id="willyClose" aria-label="Ocultar mensaje de Willy"></button>
     <small id="willyChapter">Inicio</small>
     <p id="willyText"></p>
     <div class="willy-dock__actions">
@@ -663,7 +675,7 @@
 <div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoTitle" hidden>
   <div class="modal__backdrop" data-close></div>
   <div class="modal__box">
-    <div class="modal__head"><h3 id="videoTitle">Video</h3><button class="modal__x" data-close aria-label="Cerrar video">×</button></div>
+    <div class="modal__head"><h3 id="videoTitle">Video</h3><button class="modal__x x-ic" data-close aria-label="Cerrar video"></button></div>
     <div class="modal__frame" id="videoFrame"></div>
   </div>
 </div>

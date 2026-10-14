@@ -8,7 +8,8 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // La experiencia es 100% animada por decisión de marca (no se apaga con "reducir movimiento" del sistema).
+  const reduced = false;
   const nf = new Intl.NumberFormat("es-CO", { maximumFractionDigits: 0 });
   const fmt = (n) => nf.format(Math.round(n));
   const money = (n) => "$" + fmt(n);
@@ -262,20 +263,47 @@
   const hs = $("#como-funciona"), htrack = $("#htrack"), hbar = $("#hbar");
   let hDist = 0, hActive = false;
   function setupHScroll() {
-    hActive = innerWidth > 900 && !reduced;
+    hActive = innerWidth > 900;
+    htrack.classList.toggle("is-scrollable", !hActive);
     if (!hActive) { hs.style.removeProperty("--hs-h"); htrack.style.transform = ""; return; }
+    htrack.scrollLeft = 0;
     hDist = Math.max(0, htrack.scrollWidth - innerWidth);
     hs.style.setProperty("--hs-h", hDist + innerHeight * 1.15 + "px");
   }
+  // Botones ← → del carrusel de pasos
+  const hsPrev = $("#hsPrev"), hsNext = $("#hsNext");
+  function hStep() { const c = htrack.children[1]; return c ? c.offsetWidth + 22 : 340; }
+  function hProgress() {
+    if (hActive) { const r = hs.getBoundingClientRect(); return clamp(-r.top / (hs.offsetHeight - innerHeight), 0, 1); }
+    const m = htrack.scrollWidth - htrack.clientWidth; return m > 0 ? htrack.scrollLeft / m : 0;
+  }
+  function hGo(dir) {
+    if (hActive) {
+      const p = clamp(hProgress() + (dir * hStep()) / Math.max(hDist, 1), 0, 1);
+      const top = hs.getBoundingClientRect().top + scrollY + Math.max(p, 0.001) * (hs.offsetHeight - innerHeight);
+      scrollTo({ top, behavior: "smooth" });
+    } else htrack.scrollBy({ left: dir * hStep(), behavior: "smooth" });
+    track("steps_nav", { dir });
+  }
+  hsPrev.addEventListener("click", () => hGo(-1));
+  hsNext.addEventListener("click", () => hGo(1));
+  // Arrastrar con el mouse cuando el carrusel es deslizable
+  let drag = null;
+  htrack.addEventListener("pointerdown", (e) => {
+    if (hActive || e.pointerType !== "mouse") return;
+    drag = { x: e.clientX, left: htrack.scrollLeft, moved: false }; htrack.classList.add("is-drag");
+  });
+  addEventListener("pointermove", (e) => {
+    if (!drag) return; const dx = e.clientX - drag.x;
+    if (Math.abs(dx) > 4) drag.moved = true;
+    htrack.style.scrollBehavior = "auto"; htrack.scrollLeft = drag.left - dx;
+  });
+  addEventListener("pointerup", () => { if (drag) { htrack.classList.remove("is-drag"); htrack.style.scrollBehavior = ""; drag = null; } });
   function hScroll() {
-    if (!hActive) {
-      if (hbar) { const m = htrack.scrollWidth - htrack.clientWidth; hbar.style.transform = `scaleX(${m > 0 ? htrack.scrollLeft / m : 0})`; }
-      return;
-    }
-    const r = hs.getBoundingClientRect();
-    const p = clamp(-r.top / (hs.offsetHeight - innerHeight), 0, 1);
-    htrack.style.transform = `translate3d(${-p * hDist}px,0,0)`;
+    const p = hProgress();
+    if (hActive) htrack.style.transform = `translate3d(${-p * hDist}px,0,0)`;
     hbar.style.transform = `scaleX(${p})`;
+    hsPrev.disabled = p <= 0.005; hsNext.disabled = p >= 0.995;
   }
   htrack.addEventListener("scroll", hScroll, { passive: true });
 
@@ -345,8 +373,15 @@
         }
       });
       ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+      // ondas que salen del núcleo
+      const now = performance.now() / 1000;
+      for (let w = 0; w < 3; w++) {
+        const ph = ((now * 0.35 + w / 3) % 1), r = 30 + ph * 230;
+        ctx.strokeStyle = `rgba(127,240,230,${(1 - ph) * 0.35})`; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(C, C, r, 0, Math.PI * 2); ctx.stroke();
+      }
     }
-    function loop() { if (!running) return; if (!reduced) angle += 0.0009; draw(); requestAnimationFrame(loop); }
+    function loop() { if (!running) return; angle += 0.0012; draw(); requestAnimationFrame(loop); }
     size(); draw();
     return {
       start() { if (!running) { running = true; requestAnimationFrame(loop); } },
@@ -492,7 +527,9 @@
   }));
   $$(".chips .chip[data-members]").forEach((c) => c.addEventListener("click", () => {
     cM.value = c.dataset.members; calc(true); track("calc_scenario", { members: +c.dataset.members });
+    if (+c.dataset.members === capacity) confetti(c);
   }));
+  cM.addEventListener("change", () => { if (+cM.value === capacity) confetti(out.total); });
   calc(false);
 
   /* ------------------------------------------------------------------
@@ -563,6 +600,154 @@
   $$(".faq details").forEach((d) => d.addEventListener("toggle", () => {
     if (d.open) track("faq_open", { question: d.querySelector("summary").textContent });
   }));
+
+
+  /* ------------------------------------------------------------------
+     12. Capa de efectos (v2)
+     ------------------------------------------------------------------ */
+  const fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
+
+  // Confeti
+  function confetti(from) {
+    const r = from.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const colors = ["#ff5b47", "#22c3c6", "#ffc43d", "#2b6fe0", "#8b6cff"];
+    for (let i = 0; i < 70; i++) {
+      const el = document.createElement("i"); el.className = "confetti";
+      el.style.background = colors[i % colors.length]; el.style.left = cx + "px"; el.style.top = cy + "px";
+      document.body.appendChild(el);
+      const a = Math.random() * Math.PI * 2, v = 160 + Math.random() * 260;
+      const dx = Math.cos(a) * v, dy = Math.sin(a) * v - 220;
+      el.animate([
+        { transform: "translate(0,0) rotate(0)", opacity: 1 },
+        { transform: `translate(${dx}px,${dy + 420}px) rotate(${Math.random() * 900 - 450}deg)`, opacity: 0 }
+      ], { duration: 1400 + Math.random() * 800, easing: "cubic-bezier(.2,.7,.4,1)" }).onfinish = () => el.remove();
+    }
+  }
+  window.tcConfetti = confetti;
+
+  // Títulos palabra por palabra
+  $$(".title, .final__title").forEach((t) => {
+    let i = 0;
+    const wrap = (node) => {
+      [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach((w) => {
+            if (!w) return;
+            if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(" ")); return; }
+            const o = document.createElement("span"); o.className = "sw";
+            const inn = document.createElement("span"); inn.style.setProperty("--i", i++); inn.textContent = w;
+            o.appendChild(inn); frag.appendChild(o);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && n.tagName !== "BR") {
+          const o = document.createElement("span"); o.className = "sw";
+          const inn = document.createElement("span"); inn.style.setProperty("--i", i++);
+          n.replaceWith(o); inn.appendChild(n); o.appendChild(inn);
+        }
+      });
+    };
+    wrap(t);
+    if (!t.classList.contains("reveal") && !t.closest(".reveal")) io.observe(t);
+  });
+
+  // Brillo que sigue el mouse + tilt 3D en tarjetas
+  const glowSel = ".role, .hcard, .flow li, .status__card, .dos__col, .prov-stats div, .who > div, .wfeat, .layer, .vs__col, .mini-calc, .base, .docs, .rut, .zero, .calc__inputs, .prov-flow li, .donut-card";
+  $$(glowSel).forEach((el) => {
+    el.classList.add("glow");
+    const fx = document.createElement("span"); fx.className = "glow-fx"; el.prepend(fx);
+    el.addEventListener("pointermove", (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--gx", e.clientX - r.left + "px"); el.style.setProperty("--gy", e.clientY - r.top + "px");
+    });
+  });
+  if (fine) {
+    $$(".hcard, .role, .status__card, .prov-stats div, .donut-card, .media-card, .dos__col, .zero, .rut").forEach((el) => {
+      el.classList.add("tilt3d");
+      const lift = el.matches(".hcard, .prov-stats div") ? -8 : -4;
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        el.classList.add("is-tilting");
+        el.style.transform = `perspective(900px) translateY(${lift}px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+      });
+      el.addEventListener("pointerleave", () => { el.classList.remove("is-tilting"); el.style.transform = ""; });
+    });
+    $$(".btn--lg").forEach((b) => {
+      if (b.classList.contains("magnetic")) return;
+      b.addEventListener("pointermove", (e) => {
+        const r = b.getBoundingClientRect();
+        b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.12}px, ${(e.clientY - r.top - r.height / 2) * 0.2 - 3}px)`;
+      });
+      b.addEventListener("pointerleave", () => { b.style.transform = ""; });
+    });
+  }
+
+  // Ripple en botones
+  document.addEventListener("pointerdown", (e) => {
+    const b = e.target.closest(".btn, .hs-btn, .chip");
+    if (!b || !b.classList.contains("btn")) return;
+    const r = b.getBoundingClientRect(), d = Math.max(r.width, r.height);
+    const s = document.createElement("span"); s.className = "ripple";
+    s.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX - r.left - d / 2}px;top:${e.clientY - r.top - d / 2}px`;
+    b.appendChild(s); setTimeout(() => s.remove(), 700);
+  });
+
+  // Parallax del mouse en el hero
+  const heroEl = $(".hero");
+  if (fine) heroEl.addEventListener("pointermove", (e) => {
+    heroEl.style.setProperty("--hx", (e.clientX / innerWidth - 0.5).toFixed(3));
+    heroEl.style.setProperty("--hy", (e.clientY / innerHeight - 0.5).toFixed(3));
+  });
+
+  // Partículas: monedas y destellos que suben
+  $$(".hero .hero__bg, .final .hero__bg").forEach((bg) => {
+    const cv = document.createElement("canvas"); cv.className = "hero-particles"; bg.appendChild(cv);
+    const ctx = cv.getContext("2d"); let W = 0, H = 0, dpr = 1, on = false, mx = -999, my = -999;
+    const cols = ["#ff5b47", "#22c3c6", "#ffc43d", "#2b6fe0", "#8b6cff"];
+    const P = Array.from({ length: 46 }, () => ({}));
+    const reset = (p, init) => {
+      p.x = Math.random() * W; p.y = init ? Math.random() * H : H + 20;
+      p.r = 2 + Math.random() * 6; p.v = 0.25 + Math.random() * 0.7; p.s = Math.random() * Math.PI * 2;
+      p.c = cols[(Math.random() * cols.length) | 0]; p.coin = Math.random() < 0.28; p.a = 0.25 + Math.random() * 0.5;
+    };
+    const size = () => { dpr = Math.min(2, devicePixelRatio || 1); W = bg.clientWidth; H = bg.clientHeight; cv.width = W * dpr; cv.height = H * dpr; };
+    size(); P.forEach((p) => reset(p, true));
+    addEventListener("resize", size);
+    bg.parentElement.addEventListener("pointermove", (e) => { const r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; });
+    const tick = () => {
+      if (!on) return;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+      P.forEach((p) => {
+        p.y -= p.v; p.s += 0.02; p.x += Math.sin(p.s) * 0.4;
+        const dx = p.x - mx, dy = p.y - my, d = Math.hypot(dx, dy);
+        if (d < 110) { p.x += (dx / d) * 2.2; p.y += (dy / d) * 2.2; }
+        if (p.y < -20) reset(p);
+        ctx.globalAlpha = p.a;
+        if (p.coin) {
+          ctx.fillStyle = "#ffc43d"; ctx.beginPath(); ctx.ellipse(p.x, p.y, p.r + 4, (p.r + 4) * Math.abs(Math.cos(p.s)) + 1, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = "#e09b00"; ctx.font = `800 ${p.r + 5}px sans-serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+          if (Math.abs(Math.cos(p.s)) > 0.4) ctx.fillText("$", p.x, p.y + 0.5);
+        } else { ctx.fillStyle = p.c; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); }
+      });
+      ctx.globalAlpha = 1; requestAnimationFrame(tick);
+    };
+    new IntersectionObserver(([en]) => { const was = on; on = en.isIntersecting; if (on && !was) { size(); requestAnimationFrame(tick); } }).observe(bg);
+  });
+
+  // Cursor personalizado
+  if (fine) {
+    const ring = document.createElement("div"), dot = document.createElement("div");
+    ring.className = "cursor"; dot.className = "cursor-dot"; document.body.append(ring, dot);
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    addEventListener("pointermove", (e) => {
+      tx = e.clientX; ty = e.clientY; ring.classList.add("is-on"); dot.classList.add("is-on");
+      dot.style.transform = `translate(${tx}px,${ty}px)`;
+      ring.classList.toggle("is-hover", !!e.target.closest("a, button, summary, input, .layer, .hcard"));
+    });
+    document.addEventListener("pointerleave", () => { ring.classList.remove("is-on"); dot.classList.remove("is-on"); });
+    (function follow() { cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18; ring.style.transform = `translate(${cx}px,${cy}px)`; requestAnimationFrame(follow); })();
+  }
 
   $("#year").textContent = new Date().getFullYear();
 
