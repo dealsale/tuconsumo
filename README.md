@@ -26,12 +26,12 @@ cualquier hosting. Para probarlo localmente: `python3 -m http.server` y abrir ht
 | 2 | ¿Qué es? | Marketplace; roles comprador / consultor / proveedor |
 | 3 | Cómo funciona | Scroll horizontal: Compra → Usa → Comparte → Recomienda → Gana |
 | 4 | Tu comunidad | Perla interactiva de 5 capas (4/16/64/256/1.024 = 1.365) |
-| 5 | Los puntos | Mini‑calculadora de puntos, valor por capa, simulación oficial ($996.000) |
+| 5 | Los puntos | Mini‑calculadora de puntos, valor por capa, simulación oficial ($1.095.600) |
 | 6 | Calculadora | Estimado mensual, 70/30, 12 meses, compartir por WhatsApp |
 | 7 | Billetera | 2% personal y regla 70/30 |
 | 8 | Mantente activo | Activo vs. en pausa |
 | 9 | Regístrate | 6 pasos, documentos, RUT CIIU 8299, $0 |
-| 10 | Proveedores | Vende, fideliza y vuelve a vender; flujo y responsabilidades |
+| 10 | Proveedores | Vende, fideliza y crece; flujo y responsabilidades |
 | 11 | Buenas prácticas | Qué hacer y qué no |
 | 12 | Preguntas | FAQ |
 | 13 | Empieza | CTA final |
@@ -64,6 +64,6 @@ principal de tuconsumo.com.co. Cámbialos por las URL exactas (por ejemplo, el e
 
 ## Nota legal
 
-Las cifras usan los valores del material de inducción (bases $50/$100/$150/$30/$30 por punto,
-2% personal, 70/30) y se presentan como simulaciones ilustrativas, sin garantía de ingresos.
+Las cifras usan la liquidación de puntos de TuConsumo: puntos = redondear(compra × descuento × 40% ÷ 360),
+pagados por cada persona activa a $50/$100/$150/$30/$30 según la capa; además 2% personal y regla 70/30 y se presentan como simulaciones ilustrativas, sin garantía de ingresos.
 Conviene que el área legal de TuConsumo revise los textos antes de pautar.

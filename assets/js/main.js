@@ -432,10 +432,18 @@
   const ptCompra = $("#ptCompra"), ptDesc = $("#ptDesc"), ptOut = $("#ptOut"), ptDescOut = $("#ptDescOut");
   const parseMoney = (s) => parseInt(String(s).replace(/\D/g, ""), 10) || 0;
   function rangeFill(r) { r.style.setProperty("--p", ((r.value - r.min) / (r.max - r.min)) * 100 + "%"); }
+  // Liquidación de puntos TuConsumo: redondear(descuento × 40% ÷ 360)
+  function pointsRaw(compra, descPct) { return (compra * (descPct / 100) * PLAN.porcentajeUtilidad) / PLAN.divisorPuntos; }
+  function points(compra, descPct) { return Math.round(pointsRaw(compra, descPct) + 1e-9); }
+  const dec2 = new Intl.NumberFormat("es-CO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   function updPoints() {
-    const v = parseMoney(ptCompra.value);
-    ptDescOut.textContent = ptDesc.value + "%";
-    ptOut.textContent = fmt(Math.floor((v * ptDesc.value) / 100 / PLAN.pesosPorPunto));
+    const v = parseMoney(ptCompra.value), d = +ptDesc.value, desc = v * d / 100;
+    ptDescOut.textContent = d + "%";
+    ptOut.textContent = fmt(points(v, d));
+    $("#ptStep1").textContent = money(desc);
+    $("#ptStep2").textContent = money(desc * PLAN.porcentajeUtilidad);
+    $("#ptStep3").textContent = dec2.format(pointsRaw(v, d));
+    $("#ptStep4").textContent = fmt(points(v, d)) + " puntos";
     rangeFill(ptDesc);
   }
   ptCompra.addEventListener("input", () => {
@@ -490,7 +498,7 @@
     [cM, cB, cD, cO].forEach(rangeFill);
     out.m.textContent = fmt(n); out.b.textContent = money(buy); out.d.textContent = cD.value + "%"; out.o.textContent = money(own);
 
-    const pts = Math.floor((buy * disc) / PLAN.pesosPorPunto);
+    const pts = points(buy, +cD.value);
     const fill = layerFill(n);
     const per = fill.map((f, k) => f * PLAN.basePorPunto[k] * pts);
     const net = per.reduce((a, b) => a + b, 0);

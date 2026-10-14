@@ -34,7 +34,7 @@ window.TC_CONFIG = {
     calculadora: { src: "", vertical: false, title: "Willy usa la calculadora contigo",       duration: "2:00" },
     billetera:   { src: "", vertical: false, title: "Tu billetera: 2% y regla 70/30",       duration: "1:20" },
     registro:    { src: "", vertical: false, title: "Regístrate paso a paso",                duration: "2:30" },
-    proveedores: { src: "", vertical: false, title: "Vende, fideliza y vuelve a vender",     duration: "2:00" }
+    proveedores: { src: "", vertical: false, title: "Vende, fideliza y crece",               duration: "2:00" }
   },
 
   /* ---------- Medición de campaña ----------
@@ -52,7 +52,10 @@ window.TC_CONFIG = {
     ancho: 4,                              // cada núcleo tiene 4 compradores directos
     capas: 5,
     basePorPunto: [50, 100, 150, 30, 30], // $ por punto en cada capa
-    pesosPorPunto: 1000,                   // $1.000 de descuento = 1 punto
+    // Liquidación de puntos: puntos = redondear(compra × descuento × 40% ÷ 360)
+    // Ej.: $100.000 con 20% → $20.000 × 40% = $8.000 ÷ 360 = 22,22 → 22 puntos
+    porcentajeUtilidad: 0.40,              // siempre 40% del descuento
+    divisorPuntos: 360,                    // suma de las bases de las 5 capas (50+100+150+30+30)
     cashbackPersonal: 0.02,                // 2% en compras personales
     retiroBanco: 0.70,                     // 70% transferible a banco
     recompra: 0.30                         // 30% para compras en el marketplace

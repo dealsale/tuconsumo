@@ -235,7 +235,7 @@
     <ol class="flow reveal-stagger">
       <li><span class="flow__ic">🧾</span><b>Compra</b><small>Alguien de tu comunidad compra</small></li>
       <li><span class="flow__ic">🏷️</span><b>Descuento</b><small>El proveedor otorga un % sobre la compra</small></li>
-      <li><span class="flow__ic">⚙️</span><b>Cálculo automático</b><small>$1.000 de descuento = 1 punto</small></li>
+      <li><span class="flow__ic">⚙️</span><b>Cálculo automático</b><small>40% del descuento ÷ 360 = puntos</small></li>
       <li><span class="flow__ic">⭐</span><b>Puntos</b><small>Se acreditan en tu cuenta</small></li>
     </ol>
 
@@ -252,9 +252,15 @@
         </label>
         <div class="mini-calc__result">
           <span>Esta compra genera</span>
-          <b><span id="ptOut">20</span> puntos</b>
+          <b><span id="ptOut">22</span> puntos</b>
         </div>
-        <p class="tiny">Ejemplo ilustrativo del material de inducción: $100.000 con 20% de descuento puede generar 20 puntos. La cantidad varía según proveedor y producto.</p>
+        <ol class="pt-steps" aria-label="Cómo se calcula">
+          <li><span>Descuento del proveedor</span><b id="ptStep1">$20.000</b></li>
+          <li><span>× 40% (siempre)</span><b id="ptStep2">$8.000</b></li>
+          <li><span>÷ 360 (suma de las 5 capas)</span><b id="ptStep3">22,22</b></li>
+          <li><span>Se redondea</span><b id="ptStep4">22 puntos</b></li>
+        </ol>
+        <p class="tiny">Según la liquidación de puntos de TuConsumo: $100.000 con 20% de descuento genera 22 puntos. Si el resultado fuera 22,51 se redondea a 23.</p>
       </div>
 
       <div class="base card reveal">
@@ -268,6 +274,7 @@
           <div class="bar" style="--v:20%"><span class="bar__fill l5"></span><b>$30</b><small>Capa 5 · 1.024</small></div>
         </div>
         <p class="formula formula--dark">50 + 100 + 150 + 30 + 30 = <b>$360 por punto</b></p>
+        <p class="muted small base__note">Por eso la liquidación divide entre <b>360</b>: el 40% del descuento se convierte en puntos que se pagan en las 5 capas, por cada persona activa al cierre del periodo comercial.</p>
       </div>
     </div>
 
@@ -275,7 +282,7 @@
       <div class="sim__head">
         <div>
           <span class="tag">Simulación ilustrativa del plan</span>
-          <h3>Si cada persona de tu comunidad compra <b>$100.000</b> al mes (20 puntos)…</h3>
+          <h3>Si cada persona de tu comunidad compra <b>$100.000</b> al mes (22 puntos)…</h3>
         </div>
         <div class="video-slot video-slot--inline" data-video="puntos"></div>
       </div>
@@ -283,13 +290,13 @@
       <table class="sim__table">
         <thead><tr><th>Capa</th><th>Compradores</th><th>Base</th><th>Puntos</th><th>Operación</th><th>Bonificación</th></tr></thead>
         <tbody>
-          <tr><td><i class="layer__dot l1"></i>Capa 1</td><td>4</td><td>$50</td><td>20</td><td>4 × 50 × 20</td><td>$4.000</td></tr>
-          <tr><td><i class="layer__dot l2"></i>Capa 2</td><td>16</td><td>$100</td><td>20</td><td>16 × 100 × 20</td><td>$32.000</td></tr>
-          <tr><td><i class="layer__dot l3"></i>Capa 3</td><td>64</td><td>$150</td><td>20</td><td>64 × 150 × 20</td><td>$192.000</td></tr>
-          <tr><td><i class="layer__dot l4"></i>Capa 4</td><td>256</td><td>$30</td><td>20</td><td>256 × 30 × 20</td><td>$153.600</td></tr>
-          <tr><td><i class="layer__dot l5"></i>Capa 5</td><td>1.024</td><td>$30</td><td>20</td><td>1.024 × 30 × 20</td><td>$614.400</td></tr>
+          <tr><td><i class="layer__dot l1"></i>Capa 1</td><td>4</td><td>$50</td><td>22</td><td>4 × 50 × 22</td><td>$4.400</td></tr>
+          <tr><td><i class="layer__dot l2"></i>Capa 2</td><td>16</td><td>$100</td><td>22</td><td>16 × 100 × 22</td><td>$35.200</td></tr>
+          <tr><td><i class="layer__dot l3"></i>Capa 3</td><td>64</td><td>$150</td><td>22</td><td>64 × 150 × 22</td><td>$211.200</td></tr>
+          <tr><td><i class="layer__dot l4"></i>Capa 4</td><td>256</td><td>$30</td><td>22</td><td>256 × 30 × 22</td><td>$168.960</td></tr>
+          <tr><td><i class="layer__dot l5"></i>Capa 5</td><td>1.024</td><td>$30</td><td>22</td><td>1.024 × 30 × 22</td><td>$675.840</td></tr>
         </tbody>
-        <tfoot><tr><td colspan="5">Total mensual de la simulación</td><td><b data-count="996000" data-prefix="$">$996.000</b></td></tr></tfoot>
+        <tfoot><tr><td colspan="5">Total mensual de la simulación</td><td><b data-count="1095600" data-prefix="$">$1.095.600</b></td></tr></tfoot>
       </table>
       </div>
       <p class="tiny">Ejemplo pedagógico, no promesa de ingreso. Las bonificaciones dependen de compras reales, actividad, posición y condiciones vigentes del plan.</p>
@@ -311,7 +318,7 @@
       <div class="calc__inputs card">
         <div class="calc__group">
           <div class="calc__label">
-            <span>Personas en tu comunidad</span>
+            <span>Personas activas en tu comunidad</span>
             <output id="cMembersOut">84</output>
           </div>
           <input type="range" id="cMembers" min="0" max="1364" step="1" value="84" aria-describedby="cMembersHelp">
@@ -369,7 +376,7 @@
             Enviarme este cálculo por WhatsApp
           </a>
         </div>
-        <p class="tiny tiny--light">Estimación ilustrativa basada en el material de inducción de TuConsumo (bases por punto $50 / $100 / $150 / $30 / $30). No es una promesa ni garantía de ingresos: los valores reales dependen de compras efectivas, actividad, posición, proveedor, producto y condiciones vigentes del plan.</p>
+        <p class="tiny tiny--light">Estimación ilustrativa con la liquidación de puntos de TuConsumo: puntos = descuento × 40% ÷ 360 (redondeado), pagados por cada persona activa a $50 / $100 / $150 / $30 / $30 según la capa. No es una promesa ni garantía de ingresos: los valores reales dependen de compras efectivas, actividad, posición, proveedor, producto y condiciones vigentes del plan.</p>
       </div>
     </div>
     <div class="calc__video reveal"><div class="video-slot" data-video="calculadora"></div></div>
@@ -458,7 +465,7 @@
       <li><span>3</span><b>Registro</b><small>Eliges <i>“Regístrame para recibir bonificación”</i>.</small></li>
       <li><span>4</span><b>Documentos</b><small>Completas tu cuenta y adjuntas documentos.</small></li>
       <li><span>5</span><b>Validación</b><small>Aceptas términos y política de privacidad.</small></li>
-      <li><span>6</span><b>BackOffice</b><small>¡Listo! Gestionas tu cuenta y tus beneficios.</small></li>
+      <li><span>6</span><b>Willy</b><small>¡Listo! Willy te ayuda a gestionar tu cuenta y tus beneficios.</small></li>
     </ol>
 
     <div class="reg-grid">
@@ -520,7 +527,7 @@
     <div class="split">
       <div class="split__copy">
         <span class="eyebrow eyebrow--light reveal">Capítulo 09 · Para proveedores</span>
-        <h2 class="title title--light reveal">Vende, fideliza y <span class="hl hl--teal">vuelve a vender</span> sin empezar de cero.</h2>
+        <h2 class="title title--light reveal">Vende, fideliza y <span class="hl hl--teal">crece</span> sin empezar de cero.</h2>
         <p class="lead lead--light reveal">Conseguir compradores nuevos cuesta tiempo, publicidad y esfuerzo. En TuConsumo, la comunidad recibe cashback y bonificaciones: <b>tiene razones económicas para volver</b> y recomendar tus productos.</p>
         <div class="vs reveal">
           <div class="vs__col"><small>Adquisición tradicional</small><p>Publicidad → venta → volver a pagar publicidad por otro comprador.</p></div>
@@ -549,7 +556,7 @@
 
     <div class="prov-bottom">
       <div class="who reveal">
-        <div><h4>TuConsumo conecta y recauda</h4><ul><li>Exhibe y promociona productos</li><li>Facilita la plataforma y el BackOffice</li><li>Recauda ventas</li><li>Acompaña marketing y tráfico</li></ul></div>
+        <div><h4>TuConsumo conecta y recauda</h4><ul><li>Exhibe y promociona productos</li><li>Willy te guía en la plataforma</li><li>Recauda ventas</li><li>Acompaña marketing y tráfico</li></ul></div>
         <div><h4>Tú administras producto y entrega</h4><ul><li>Calidad y disponibilidad</li><li>Facturación al comprador</li><li>Alistamiento y despacho</li><li>Garantías y postventa</li></ul></div>
       </div>
       <div class="prov-cta reveal">
@@ -598,11 +605,11 @@
       <details><summary>¿Tengo que vender o buscar a muchas personas?</summary><p>No. El sistema ubica automáticamente a las personas en tu comunidad (4 por núcleo). Puedes comprar para ti, compartir tu experiencia y decidir hasta dónde participar. Recomendar debe ser natural y sin presión.</p></details>
       <details><summary>¿Cuánto cuesta inscribirme?</summary><p>Nada. La inscripción cuesta $0 y no hay mensualidad obligatoria. La participación se basa en compras reales.</p></details>
       <details><summary>¿Con una sola compra recibo ingresos para siempre?</summary><p>No. La primera compra inicia tu participación, pero para retirar bonificaciones debes mantenerte activo con una compra personal en el mes. Los beneficios dependen de compras reales, actividad y condiciones vigentes del plan.</p></details>
-      <details><summary>¿Cómo se calculan las bonificaciones?</summary><p>Cada compra genera puntos según el descuento del proveedor ($1.000 de descuento = 1 punto, aprox.). Cada punto se paga según la capa: $50 (capa 1), $100 (capa 2), $150 (capa 3), $30 (capas 4 y 5). Los montos pueden variar según producto, proveedor y reglas del sistema.</p></details>
+      <details><summary>¿Cómo se calculan las bonificaciones?</summary><p>Cada compra genera puntos a partir del descuento del proveedor: el descuento se multiplica por 40% y se divide entre 360, redondeando (ej.: $100.000 con 20% → $20.000 × 40% = $8.000 ÷ 360 = 22 puntos). Esos puntos se pagan por cada persona activa según la capa: $50 (capa 1), $100 (capa 2), $150 (capa 3), $30 (capas 4 y 5). Los montos pueden variar según producto, proveedor y reglas del sistema.</p></details>
       <details><summary>¿Cómo retiro mi dinero?</summary><p>Tus bonificaciones llegan a tu billetera virtual: el 70% es transferible a tu cuenta bancaria y el 30% queda disponible para compras en el marketplace.</p></details>
       <details><summary>¿Qué necesito para registrarme?</summary><p>Completar el formulario y adjuntar RUT (con CIIU 8299), cédula al 150% y certificación bancaria. Si eres persona jurídica, también Cámara de Comercio y cédula del representante legal.</p></details>
       <details><summary>¿Qué pasa si dejo de comprar?</summary><p>Si pasan más de dos meses sin compra quedas inactivo: no sales del sistema ni pierdes tu posición, pero no puedes retirar bonificaciones hasta reactivarte con una nueva compra.</p></details>
-      <details><summary>Tengo un negocio, ¿puedo vender en TuConsumo?</summary><p>Sí. No pagas inscripción ni mensualidad; la comisión se negocia y se aplica solo sobre ventas efectivas. Agenda una reunión comercial y te acompañamos con el contrato, el BackOffice y la capacitación.</p></details>
+      <details><summary>Tengo un negocio, ¿puedo vender en TuConsumo?</summary><p>Sí. No pagas inscripción ni mensualidad; la comisión se negocia y se aplica solo sobre ventas efectivas. Agenda una reunión comercial y Willy te acompaña con el contrato, la plataforma y la capacitación.</p></details>
     </div>
   </div>
 </section>
