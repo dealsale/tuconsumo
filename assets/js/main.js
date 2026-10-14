@@ -191,7 +191,7 @@
   function autoShow(text) {
     if (dockDismissed) return;
     openDock(); clearTimeout(dockTimer);
-    if (!dockPinned) dockTimer = setTimeout(closeDock, 4500 + text.length * 40);
+    if (!dockPinned) dockTimer = setTimeout(closeDock, innerWidth < 641 ? 3200 + text.length * 22 : 4500 + text.length * 40);
   }
   $("#willyClose").addEventListener("click", () => { dockDismissed = true; dockPinned = false; closeDock(); track("willy_close"); });
   $("#willyAvatar").addEventListener("click", () => {
@@ -627,27 +627,27 @@
 
   // Títulos palabra por palabra
   $$(".title, .final__title").forEach((t) => {
+    // Agrupa en "palabras" todo lo que no está separado por espacios (así "ganancias?" no se parte).
+    const words = []; let cur = null;
+    const push = (node) => { if (!cur) { cur = []; words.push(cur); } cur.push(node); };
+    [...t.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        n.textContent.split(/(\s+)/).forEach((w) => {
+          if (!w) return;
+          if (/^\s+$/.test(w)) { cur = null; words.push(" "); } else push(document.createTextNode(w));
+        });
+      } else if (n.nodeName === "BR") { cur = null; words.push(n); }
+      else push(n);
+    });
+    t.textContent = "";
     let i = 0;
-    const wrap = (node) => {
-      [...node.childNodes].forEach((n) => {
-        if (n.nodeType === 3) {
-          const frag = document.createDocumentFragment();
-          n.textContent.split(/(\s+)/).forEach((w) => {
-            if (!w) return;
-            if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(" ")); return; }
-            const o = document.createElement("span"); o.className = "sw";
-            const inn = document.createElement("span"); inn.style.setProperty("--i", i++); inn.textContent = w;
-            o.appendChild(inn); frag.appendChild(o);
-          });
-          n.replaceWith(frag);
-        } else if (n.nodeType === 1 && n.tagName !== "BR") {
-          const o = document.createElement("span"); o.className = "sw";
-          const inn = document.createElement("span"); inn.style.setProperty("--i", i++);
-          n.replaceWith(o); inn.appendChild(n); o.appendChild(inn);
-        }
-      });
-    };
-    wrap(t);
+    words.forEach((w) => {
+      if (w === " ") { t.appendChild(document.createTextNode(" ")); return; }
+      if (w.nodeName === "BR") { t.appendChild(w); return; }
+      const o = document.createElement("span"); o.className = "sw";
+      const inn = document.createElement("span"); inn.style.setProperty("--i", i++);
+      w.forEach((n) => inn.appendChild(n)); o.appendChild(inn); t.appendChild(o);
+    });
     if (!t.classList.contains("reveal") && !t.closest(".reveal")) io.observe(t);
   });
 
