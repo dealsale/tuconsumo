@@ -67,3 +67,12 @@ principal de tuconsumo.com.co. Cámbialos por las URL exactas (por ejemplo, el e
 Las cifras usan la liquidación de puntos de TuConsumo: puntos = redondear(compra × descuento × 40% ÷ 360),
 pagados por cada persona activa a $50/$100/$150/$30/$30 según la capa; además 2% personal y regla 70/30 y se presentan como simulaciones ilustrativas, sin garantía de ingresos.
 Conviene que el área legal de TuConsumo revise los textos antes de pautar.
+
+## Propuesta para iNNpulsa Colombia
+
+`innpulsa.html` es la propuesta de alianza TuConsumo × iNNpulsa (enlazada desde el menú de la landing con el
+logo de iNNpulsa). Incluye: lo que entendimos de sus programas (Ruta Milagro, ZASCA, Oportunidades para
+Emprender, iNNpulsa Mujeres, Red de Tiendas Solidarias, XISQUA), la necesidad identificada (canal de venta
+permanente después de cada programa), la propuesta en 4 pilares, plan de trabajo con piloto de 90 días,
+simulador de impacto por cohorte, metas, roles y próximos pasos. Estilos en `assets/css/innpulsa.css` y
+lógica en `assets/js/innpulsa.js`. Los logos de iNNpulsa se usan con autorización de la entidad.

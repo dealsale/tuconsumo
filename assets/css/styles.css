@@ -895,3 +895,12 @@ html{scroll-padding-top:84px}
 .pt-steps li b{color:var(--navy);font-variant-numeric:tabular-nums;white-space:nowrap}
 .pt-steps li:last-child{background:#fff1ee}.pt-steps li:last-child b{color:var(--coral)}
 .base__note{text-align:center;max-width:520px;margin:10px auto 0}
+
+/* Menú aliado: iNNpulsa */
+.nav__ally{position:relative;display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 12px;border-radius:999px;font-weight:800;font-size:.86rem;text-decoration:none;color:var(--navy);background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--ang),var(--teal),var(--blue-2),var(--coral),var(--sun),var(--teal)) border-box;border:2px solid transparent;animation:spin 5s linear infinite;transition:transform .3s var(--spring)}
+.nav__ally::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 0 #ff5b4799;animation:pulseCoral 1.8s infinite}
+.nav__ally:hover{transform:translateY(-2px)}
+@media (max-width:640px){.nav__ally{padding:6px 10px;font-size:.76rem}.nav__ally::before{display:none}}
+@media (max-width:380px){.nav__cta{gap:6px}}
+.nav__ally img{height:24px;width:auto;display:block}
+@media (max-width:640px){.nav__ally img{height:18px}}
