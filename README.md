@@ -70,8 +70,8 @@ Conviene que el área legal de TuConsumo revise los textos antes de pautar.
 
 ## Propuesta para iNNpulsa Colombia
 
-`innpulsa.html` es la propuesta de alianza TuConsumo × iNNpulsa (enlazada desde el menú de la landing con el
-logo de iNNpulsa). Incluye: lo que entendimos de sus programas (Ruta Milagro, ZASCA, Oportunidades para
+`innpulsa.html` es la propuesta de alianza TuConsumo × iNNpulsa (no está enlazada desde la landing: se abre
+directo en `/innpulsa.html`). Incluye: lo que entendimos de sus programas (Ruta Milagro, ZASCA, Oportunidades para
 Emprender, iNNpulsa Mujeres, Red de Tiendas Solidarias, XISQUA), la necesidad identificada (canal de venta
 permanente después de cada programa), la propuesta en 4 pilares, plan de trabajo con piloto de 90 días,
 simulador de impacto por cohorte, metas, roles y próximos pasos. Estilos en `assets/css/innpulsa.css` y
