@@ -896,3 +896,8 @@ html{scroll-padding-top:84px}
 .pt-steps li:last-child{background:#fff1ee}.pt-steps li:last-child b{color:var(--coral)}
 .base__note{text-align:center;max-width:520px;margin:10px auto 0}
 
+
+/* Videos con proporción propia (p. ej. los de Willy en HeyGen) */
+.modal__box.is-custom{width:min(100%,calc(78vh * var(--vr,1)))}
+.is-custom .modal__frame{aspect-ratio:var(--vr,1)}
+.modal__frame video{object-fit:contain;background:#000}

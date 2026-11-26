@@ -24,9 +24,11 @@ window.TC_CONFIG = {
        - Un enlace de Vimeo    (https://vimeo.com/123456)
        - Un archivo propio     ("assets/video/bienvenida.mp4")
      Si `src` está vacío, el espacio muestra "Video próximamente".
-     `vertical: true` para videos 9:16 (Reels / TikTok / Shorts).          */
+     `vertical: true` para videos 9:16 (Reels / TikTok / Shorts).
+     `ratio` (ancho ÷ alto) para videos con otra proporción, y `poster` para la
+     imagen de portada (opcional).                                          */
   videos: {
-    bienvenida:  { src: "", vertical: false, title: "Willy te da la bienvenida",            duration: "1:00" },
+    bienvenida:  { src: "assets/video/bienvenida.mp4", ratio: 0.865, poster: "assets/img/poster-bienvenida.jpg", title: "Willy te da la bienvenida", duration: "0:38" },
     ecosistema:  { src: "", vertical: false, title: "¿Qué es TuConsumo?",                   duration: "1:30" },
     comoFunciona:{ src: "", vertical: false, title: "Compra, usa, comparte y gana",          duration: "1:45" },
     comunidad:   { src: "", vertical: false, title: "Tu comunidad de 5 capas",               duration: "2:00" },

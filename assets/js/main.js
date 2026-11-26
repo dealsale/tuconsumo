@@ -561,14 +561,14 @@
 
   const modal = $("#videoModal"), frame = $("#videoFrame"), vTitle = $("#videoTitle"), mBox = $(".modal__box", modal);
   let lastFocus = null;
-  function embedFor(src) {
+  function embedFor(src, poster) {
     let m;
     if ((m = src.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/))([\w-]{6,})/)))
       return `<iframe src="https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&rel=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Video de Willy"></iframe>`;
     if ((m = src.match(/vimeo\.com\/(?:video\/)?(\d+)/)))
       return `<iframe src="https://player.vimeo.com/video/${m[1]}?autoplay=1&title=0&byline=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Video de Willy"></iframe>`;
     const vid = document.createElement("video");
-    vid.src = src; vid.controls = true; vid.autoplay = true; vid.playsInline = true; vid.poster = POSTER;
+    vid.src = src; vid.controls = true; vid.autoplay = true; vid.playsInline = true; vid.poster = poster || POSTER; vid.preload = "auto";
     return vid.outerHTML;
   }
   function openVideo(key) {
@@ -576,8 +576,10 @@
     if (!v || !v.src) { toast("🎬 Willy está grabando este video. ¡Muy pronto lo verás aquí!"); return; }
     lastFocus = document.activeElement;
     vTitle.textContent = v.title || "Video de Willy";
-    mBox.classList.toggle("is-vertical", !!v.vertical);
-    frame.innerHTML = embedFor(v.src);
+    mBox.classList.toggle("is-vertical", !!v.vertical && !v.ratio);
+    mBox.classList.toggle("is-custom", !!v.ratio);
+    if (v.ratio) mBox.style.setProperty("--vr", v.ratio); else mBox.style.removeProperty("--vr");
+    frame.innerHTML = embedFor(v.src, v.poster);
     modal.hidden = false; document.body.style.overflow = "hidden";
     $(".modal__x", modal).focus();
     track("video_play", { video: key });
