@@ -13,6 +13,7 @@ assets/js/config.js     → ⚙️ ÚNICO archivo a editar: videos, enlaces, tra
 assets/js/main.js       → interacciones (calculadora, perla, Willy, videos, medición)
 assets/img/             → ilustraciones optimizadas (WebP) tomadas de las inducciones
 assets/video/           → videos propios de Willy (opcional)
+assets/audio/           → audios de Willy (ElevenLabs), usados mientras llegan los videos
 ```
 
 Es un sitio estático: se puede publicar tal cual en Netlify, Vercel, GitHub Pages, cPanel o
@@ -31,7 +32,7 @@ cualquier hosting. Para probarlo localmente: `python3 -m http.server` y abrir ht
 | 7 | Billetera | 2% personal y regla 70/30 |
 | 8 | Mantente activo | Activo vs. en pausa |
 | 9 | Regístrate | 6 pasos, documentos, RUT CIIU 8299, $0 |
-| 10 | Proveedores | Vende, fideliza y crece; flujo y responsabilidades |
+| 10 | Proveedores | Vende, fideliza y crece; flujo, simulador de venta, vinculación en 5 pasos, operación y despacho, Willy y Lina, FAQ de proveedores y responsabilidades |
 | 11 | Buenas prácticas | Qué hacer y qué no |
 | 12 | Preguntas | FAQ |
 | 13 | Empieza | CTA final |
@@ -43,7 +44,7 @@ Willy acompaña todo el recorrido con un globo flotante que cambia de mensaje en
 En `assets/js/config.js` → `videos` hay 9 espacios (`bienvenida`, `ecosistema`, `comoFunciona`,
 `comunidad`, `puntos`, `calculadora`, `billetera`, `registro`, `proveedores`). Pega en `src` un enlace
 de YouTube, YouTube Shorts, Vimeo o un `.mp4` propio. Usa `vertical: true` para videos 9:16.
-Mientras `src` esté vacío, el espacio muestra “Video próximamente”.
+Mientras `src` esté vacío, se reproduce el `audio` de Willy (si lo hay) o se muestra “Video próximamente”.
 
 ## Campaña: medición y UTMs
 

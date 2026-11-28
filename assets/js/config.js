@@ -26,17 +26,19 @@ window.TC_CONFIG = {
      Si `src` está vacío, el espacio muestra "Video próximamente".
      `vertical: true` para videos 9:16 (Reels / TikTok / Shorts).
      `ratio` (ancho ÷ alto) para videos con otra proporción, y `poster` para la
-     imagen de portada (opcional).                                          */
+     imagen de portada (opcional).
+     `audio`: TEMPORAL. Mientras `src` esté vacío se reproduce este audio de
+     Willy; en cuanto pongas el video en `src`, se muestra el video.        */
   videos: {
     bienvenida:  { src: "assets/video/bienvenida.mp4", ratio: 0.865, poster: "assets/img/poster-bienvenida.jpg", title: "Willy te da la bienvenida", duration: "0:38" },
-    ecosistema:  { src: "", vertical: false, title: "¿Qué es TuConsumo?",                   duration: "1:30" },
-    comoFunciona:{ src: "", vertical: false, title: "Compra, usa, comparte y gana",          duration: "1:45" },
-    comunidad:   { src: "", vertical: false, title: "Tu comunidad de 5 capas",               duration: "2:00" },
-    puntos:      { src: "", vertical: false, title: "¿De dónde salen los puntos?",           duration: "1:30" },
-    calculadora: { src: "", vertical: false, title: "Willy usa la calculadora contigo",       duration: "2:00" },
-    billetera:   { src: "", vertical: false, title: "Tu billetera: 2% y regla 70/30",       duration: "1:20" },
-    registro:    { src: "", vertical: false, title: "Regístrate paso a paso",                duration: "2:30" },
-    proveedores: { src: "", vertical: false, title: "Vende, fideliza y crece",               duration: "2:00" }
+    ecosistema:  { src: "", audio: "assets/audio/ecosistema.mp3",   title: "¿Qué es TuConsumo?",               duration: "0:45" },
+    comoFunciona:{ src: "", audio: "assets/audio/comoFunciona.mp3", title: "Compra, usa, comparte y gana",     duration: "0:47" },
+    comunidad:   { src: "", audio: "assets/audio/comunidad.mp3",    title: "Tu comunidad de 5 capas",          duration: "1:00" },
+    puntos:      { src: "", audio: "assets/audio/puntos.mp3",       title: "¿De dónde salen los puntos?",      duration: "0:55" },
+    calculadora: { src: "", audio: "assets/audio/calculadora.mp3",  title: "Willy usa la calculadora contigo", duration: "0:56" },
+    billetera:   { src: "", audio: "assets/audio/billetera.mp3",    title: "Tu billetera: 2% y regla 70/30",  duration: "0:41" },
+    registro:    { src: "", audio: "assets/audio/registro.mp3",     title: "Regístrate paso a paso",           duration: "1:15" },
+    proveedores: { src: "", audio: "assets/audio/proveedores.mp3",  title: "Vende, fideliza y crece",          duration: "0:56" }
   },
 
   /* ---------- Medición de campaña ----------

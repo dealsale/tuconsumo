@@ -454,6 +454,28 @@
   ptDesc.addEventListener("input", updPoints);
   updPoints();
 
+  // Simulador de venta para proveedores (misma liquidación de puntos)
+  const pvPrice = $("#pvPrice"), pvDisc = $("#pvDisc");
+  if (pvPrice && pvDisc) {
+    let pvTracked = false;
+    const updProv = () => {
+      const v = parseMoney(pvPrice.value), d = +pvDisc.value, desc = v * d / 100;
+      $("#pvDiscOut").textContent = d + "%";
+      $("#pvDesc").textContent = money(desc);
+      $("#pvBonus").textContent = money(desc * PLAN.porcentajeUtilidad);
+      $("#pvPts").textContent = fmt(points(v, d)) + " puntos";
+      rangeFill(pvDisc);
+    };
+    const onProv = () => { if (!pvTracked) { pvTracked = true; track("prov_sim_start"); } updProv(); };
+    pvPrice.addEventListener("input", () => {
+      const v = parseMoney(pvPrice.value);
+      pvPrice.value = v ? fmt(Math.min(v, 99999999)) : "";
+      onProv();
+    });
+    pvDisc.addEventListener("input", onProv);
+    updProv();
+  }
+
   /* ------------------------------------------------------------------
      9. Calculadora principal
      ------------------------------------------------------------------ */
@@ -547,12 +569,12 @@
   const POSTER = "assets/img/willy-hero.webp";
   $$(".video-slot[data-video]").forEach((slot) => {
     const key = slot.dataset.video, v = VIDEOS[key] || { title: "Video de Willy" };
-    const ready = !!v.src;
+    const isAudio = !v.src && !!v.audio, ready = !!v.src || isAudio;
     slot.innerHTML = `
       <button class="vcard ${ready ? "is-ready" : "is-soon"} js-video" data-video="${key}" data-track="video_${key}">
         <span class="vcard__thumb"><img src="${v.poster || POSTER}" alt="" loading="lazy"><span class="vcard__btn"><span class="play-ic"></span></span></span>
         <span class="vcard__meta">
-          <small>${ready ? "▶ Video de Willy" : "🎬 Video próximamente"}</small>
+          <small>${isAudio ? "🎧 Audio de Willy" : ready ? "▶ Video de Willy" : "🎬 Video próximamente"}</small>
           <b>${v.title || "Video de Willy"}</b>
           <span>${ready ? (v.duration ? v.duration + " min" : "Reproducir") : "Willy está grabando este video"}</span>
         </span>
@@ -573,13 +595,20 @@
   }
   function openVideo(key) {
     const v = VIDEOS[key];
-    if (!v || !v.src) { toast("🎬 Willy está grabando este video. ¡Muy pronto lo verás aquí!"); return; }
+    const isAudio = v && !v.src && !!v.audio;
+    if (!v || (!v.src && !isAudio)) { toast("🎬 Willy está grabando este video. ¡Muy pronto lo verás aquí!"); return; }
     lastFocus = document.activeElement;
     vTitle.textContent = v.title || "Video de Willy";
-    mBox.classList.toggle("is-vertical", !!v.vertical && !v.ratio);
-    mBox.classList.toggle("is-custom", !!v.ratio);
-    if (v.ratio) mBox.style.setProperty("--vr", v.ratio); else mBox.style.removeProperty("--vr");
-    frame.innerHTML = embedFor(v.src, v.poster);
+    mBox.classList.toggle("is-audio", isAudio);
+    mBox.classList.toggle("is-vertical", !isAudio && !!v.vertical && !v.ratio);
+    mBox.classList.toggle("is-custom", !isAudio && !!v.ratio);
+    if (v.ratio && !isAudio) mBox.style.setProperty("--vr", v.ratio); else mBox.style.removeProperty("--vr");
+    if (isAudio) {
+      frame.innerHTML = `<div class="audio-player"><img src="${v.poster || POSTER}" alt="Willy"><p>🎧 Escucha a Willy mientras termina de grabar el video</p></div>`;
+      const au = document.createElement("audio");
+      au.src = v.audio; au.controls = true; au.autoplay = true; au.preload = "auto";
+      frame.firstChild.appendChild(au);
+    } else frame.innerHTML = embedFor(v.src, v.poster);
     modal.hidden = false; document.body.style.overflow = "hidden";
     $(".modal__x", modal).focus();
     track("video_play", { video: key });
@@ -662,7 +691,7 @@
   });
 
   // Brillo que sigue el mouse + tilt 3D en tarjetas
-  const glowSel = ".role, .hcard, .flow li, .status__card, .dos__col, .prov-stats div, .who > div, .wfeat, .layer, .vs__col, .mini-calc, .base, .docs, .rut, .zero, .calc__inputs, .prov-flow li, .donut-card";
+  const glowSel = ".role, .hcard, .flow li, .status__card, .dos__col, .prov-stats div, .who > div, .wfeat, .layer, .vs__col, .mini-calc, .base, .docs, .rut, .zero, .calc__inputs, .prov-flow li, .donut-card, .prov-why li, .prov-steps li, .prov-ops article, .prov-team__card, .prov-sim";
   $$(glowSel).forEach((el) => {
     el.classList.add("glow");
     const fx = document.createElement("span"); fx.className = "glow-fx"; el.prepend(fx);
@@ -672,7 +701,7 @@
     });
   });
   if (fine) {
-    $$(".hcard, .role, .status__card, .prov-stats div, .donut-card, .media-card, .dos__col, .zero, .rut").forEach((el) => {
+    $$(".hcard, .role, .status__card, .prov-stats div, .donut-card, .media-card, .dos__col, .zero, .rut, .prov-team__card").forEach((el) => {
       el.classList.add("tilt3d");
       const lift = el.matches(".hcard, .prov-stats div") ? -8 : -4;
       el.addEventListener("pointermove", (e) => {
