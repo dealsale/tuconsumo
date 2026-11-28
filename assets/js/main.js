@@ -4,6 +4,10 @@
 (() => {
   "use strict";
   const CFG = window.TC_CONFIG || {};
+  // Raíz del sitio (carpeta que contiene assets/): permite usar el mismo config.js desde subpáginas como /proveedores/
+  const ROOT = new URL("../../", (document.currentScript && document.currentScript.src) || location.href);
+  // Rutas relativas de config.js ("assets/...") se resuelven desde la raíz; URLs absolutas quedan igual.
+  const asset = (p) => (p && !/^([a-z][a-z0-9+.-]*:|\/|#)/i.test(p) ? new URL(p, ROOT).href : p);
   const PLAN = CFG.plan;
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
@@ -260,9 +264,10 @@
   /* ------------------------------------------------------------------
      6. Scroll horizontal "Cómo funciona"
      ------------------------------------------------------------------ */
-  const hs = $("#como-funciona"), htrack = $("#htrack"), hbar = $("#hbar");
+  const htrack = $("#htrack"), hs = htrack && htrack.closest(".hscroll"), hbar = $("#hbar");
   let hDist = 0, hActive = false;
   function setupHScroll() {
+    if (!hs) return;
     hActive = innerWidth > 900;
     htrack.classList.toggle("is-scrollable", !hActive);
     if (!hActive) { hs.style.removeProperty("--hs-h"); htrack.style.transform = ""; return; }
@@ -285,10 +290,11 @@
     } else htrack.scrollBy({ left: dir * hStep(), behavior: "smooth" });
     track("steps_nav", { dir });
   }
+  let drag = null;
+  if (hs) {
   hsPrev.addEventListener("click", () => hGo(-1));
   hsNext.addEventListener("click", () => hGo(1));
   // Arrastrar con el mouse cuando el carrusel es deslizable
-  let drag = null;
   htrack.addEventListener("pointerdown", (e) => {
     if (hActive || e.pointerType !== "mouse") return;
     drag = { x: e.clientX, left: htrack.scrollLeft, moved: false }; htrack.classList.add("is-drag");
@@ -299,13 +305,15 @@
     htrack.style.scrollBehavior = "auto"; htrack.scrollLeft = drag.left - dx;
   });
   addEventListener("pointerup", () => { if (drag) { htrack.classList.remove("is-drag"); htrack.style.scrollBehavior = ""; drag = null; } });
+  htrack.addEventListener("scroll", hScroll, { passive: true });
+  }
   function hScroll() {
+    if (!hs) return;
     const p = hProgress();
     if (hActive) htrack.style.transform = `translate3d(${-p * hDist}px,0,0)`;
     hbar.style.transform = `scaleX(${p})`;
     hsPrev.disabled = p <= 0.005; hsNext.disabled = p >= 0.995;
   }
-  htrack.addEventListener("scroll", hScroll, { passive: true });
 
   /* ------------------------------------------------------------------
      7. La perla de 5 capas (canvas)
@@ -446,13 +454,15 @@
     $("#ptStep4").textContent = fmt(points(v, d)) + " puntos";
     rangeFill(ptDesc);
   }
-  ptCompra.addEventListener("input", () => {
-    const v = parseMoney(ptCompra.value);
-    ptCompra.value = v ? fmt(Math.min(v, 99999999)) : "";
+  if (ptCompra) {
+    ptCompra.addEventListener("input", () => {
+      const v = parseMoney(ptCompra.value);
+      ptCompra.value = v ? fmt(Math.min(v, 99999999)) : "";
+      updPoints();
+    });
+    ptDesc.addEventListener("input", updPoints);
     updPoints();
-  });
-  ptDesc.addEventListener("input", updPoints);
-  updPoints();
+  }
 
   // Simulador de venta para proveedores (misma liquidación de puntos)
   const pvPrice = $("#pvPrice"), pvDisc = $("#pvDisc");
@@ -480,6 +490,7 @@
      9. Calculadora principal
      ------------------------------------------------------------------ */
   const cM = $("#cMembers"), cB = $("#cBuy"), cD = $("#cDisc"), cO = $("#cOwn");
+  if (cM) {
   const out = {
     m: $("#cMembersOut"), b: $("#cBuyOut"), d: $("#cDiscOut"), o: $("#cOwnOut"),
     total: $("#cTotal"), bank: $("#cBank"), rebuy: $("#cRebuy"), net: $("#cNet"), cash: $("#cCash"),
@@ -561,18 +572,19 @@
   }));
   cM.addEventListener("change", () => { if (+cM.value === capacity) confetti(out.total); });
   calc(false);
+  }
 
   /* ------------------------------------------------------------------
      10. Espacios de video de Willy + modal
      ------------------------------------------------------------------ */
   const VIDEOS = CFG.videos || {};
-  const POSTER = "assets/img/willy-hero.webp";
+  const POSTER = asset("assets/img/willy-hero.webp");
   $$(".video-slot[data-video]").forEach((slot) => {
     const key = slot.dataset.video, v = VIDEOS[key] || { title: "Video de Willy" };
     const isAudio = !v.src && !!v.audio, ready = !!v.src || isAudio;
     slot.innerHTML = `
       <button class="vcard ${ready ? "is-ready" : "is-soon"} js-video" data-video="${key}" data-track="video_${key}">
-        <span class="vcard__thumb"><img src="${v.poster || POSTER}" alt="" loading="lazy"><span class="vcard__btn"><span class="play-ic"></span></span></span>
+        <span class="vcard__thumb"><img src="${asset(v.poster) || POSTER}" alt="" loading="lazy"><span class="vcard__btn"><span class="play-ic"></span></span></span>
         <span class="vcard__meta">
           <small>${isAudio ? "🎧 Audio de Willy" : ready ? "▶ Video de Willy" : "🎬 Video próximamente"}</small>
           <b>${v.title || "Video de Willy"}</b>
@@ -604,11 +616,11 @@
     mBox.classList.toggle("is-custom", !isAudio && !!v.ratio);
     if (v.ratio && !isAudio) mBox.style.setProperty("--vr", v.ratio); else mBox.style.removeProperty("--vr");
     if (isAudio) {
-      frame.innerHTML = `<div class="audio-player"><img src="${v.poster || POSTER}" alt="Willy"><p>🎧 Escucha a Willy mientras termina de grabar el video</p></div>`;
+      frame.innerHTML = `<div class="audio-player"><img src="${asset(v.poster) || POSTER}" alt="Willy"><p>🎧 Escucha a Willy mientras termina de grabar el video</p></div>`;
       const au = document.createElement("audio");
-      au.src = v.audio; au.controls = true; au.autoplay = true; au.preload = "auto";
+      au.src = asset(v.audio); au.controls = true; au.autoplay = true; au.preload = "auto";
       frame.firstChild.appendChild(au);
-    } else frame.innerHTML = embedFor(v.src, v.poster);
+    } else frame.innerHTML = embedFor(asset(v.src), asset(v.poster));
     modal.hidden = false; document.body.style.overflow = "hidden";
     $(".modal__x", modal).focus();
     track("video_play", { video: key });
@@ -734,7 +746,7 @@
 
   // Parallax del mouse en el hero
   const heroEl = $(".hero");
-  if (fine) heroEl.addEventListener("pointermove", (e) => {
+  if (fine && heroEl) heroEl.addEventListener("pointermove", (e) => {
     heroEl.style.setProperty("--hx", (e.clientX / innerWidth - 0.5).toFixed(3));
     heroEl.style.setProperty("--hy", (e.clientY / innerHeight - 0.5).toFixed(3));
   });

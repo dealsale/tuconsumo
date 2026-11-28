@@ -48,10 +48,10 @@
     <a href="#comunidad">Tu comunidad</a>
     <a href="#calculadora">Calculadora</a>
     <a href="#registro">Registro</a>
-    <a href="#proveedores">Proveedores</a>
+    <a href="proveedores/" data-track="nav_proveedores">Proveedores</a>
   </nav>
   <div class="nav__cta">
-    <span class="chapter-count" aria-hidden="true"><b id="chapNow">01</b>/<span id="chapTotal">13</span></span>
+    <span class="chapter-count" aria-hidden="true"><b id="chapNow">01</b>/<span id="chapTotal">12</span></span>
     <a class="btn btn--coral btn--sm js-out" data-link="registro" data-track="nav_registro" href="https://tuconsumo.com.co/" target="_blank" rel="noopener">Registrarme gratis</a>
   </div>
 </header>
@@ -519,162 +519,30 @@
   </div>
 </div>
 
-<!-- ============ 9 · PROVEEDORES ============ -->
-<section class="chapter dark" id="proveedores" data-title="Proveedores"
-  data-willy="¿Tienes un negocio o una marca? En TuConsumo vendes a una comunidad que tiene razones para volver a comprar. Sin inscripción ni mensualidad.">
-  <div class="stars" aria-hidden="true"></div>
+<!-- ============ AVISO · PROVEEDORES (página aparte: /proveedores/) ============ -->
+<div class="prov-teaser-wrap" id="proveedores">
   <div class="wrap">
-    <div class="split">
-      <div class="split__copy">
-        <span class="eyebrow eyebrow--light reveal">Capítulo 09 · Para proveedores</span>
-        <h2 class="title title--light reveal">Vende, fideliza y <span class="hl hl--teal">crece</span> sin empezar de cero.</h2>
-        <p class="lead lead--light reveal">Conseguir compradores nuevos cuesta tiempo, publicidad y esfuerzo. En TuConsumo, la comunidad recibe cashback y bonificaciones: <b>tiene razones económicas para volver</b> y recomendar tus productos.</p>
-        <div class="vs reveal">
-          <div class="vs__col"><small>Adquisición tradicional</small><p>Publicidad → venta → volver a pagar publicidad por otro comprador.</p></div>
-          <div class="vs__col vs__col--on"><small>Modelo TuConsumo</small><p>Compra → beneficios → recompra → recomendación → nuevos compradores.</p></div>
+    <div class="prov-teaser reveal">
+      <div>
+        <span class="eyebrow eyebrow--light">¿Tienes un negocio o una marca?</span>
+        <h2 class="title title--light title--sm">Vende en TuConsumo a una comunidad que <span class="hl hl--teal">vuelve a comprar</span>.</h2>
+        <p class="lead lead--light">Sin inscripción ni mensualidad. La comisión se pacta contigo y solo se aplica sobre ventas efectivas.</p>
+        <div class="prov-teaser__chips"><span>Inscripción $0</span><span>Mensualidad $0</span><span>Despacho en 1 a 3 días</span></div>
+        <div class="btn-row">
+          <a class="btn btn--coral btn--lg" href="proveedores/" data-track="landing_proveedores">Conoce TuConsumo para proveedores →</a>
         </div>
       </div>
-      <div class="split__media reveal">
-        <figure class="media-card media-card--dark parallax"><img src="assets/img/proveedor-tienda.webp" alt="Proveedora mostrando su tienda en el marketplace TuConsumo" loading="lazy"></figure>
-      </div>
-    </div>
-
-    <div class="prov-stats reveal-stagger">
-      <div><b data-count="0" data-prefix="$">$0</b><span>Inscripción</span></div>
-      <div><b data-count="0" data-prefix="$">$0</b><span>Mensualidad</span></div>
-      <div><b>%</b><span>Comisión negociada solo sobre ventas efectivas</span></div>
-      <div><b>1–3</b><span>días de despacho esperado</span></div>
-    </div>
-
-    <ol class="prov-flow reveal-stagger">
-      <li><b>Publicas</b><small>Producto, 6 fotos, precio y stock real</small></li>
-      <li><b>Compran</b><small>La plataforma recauda</small></li>
-      <li><b>Despachas</b><small>Con transportadora enlazada</small></li>
-      <li><b>Confirman</b><small>Se espera la venta efectiva</small></li>
-      <li><b>Liquidamos</b><small>Saldo neto a tu cuenta</small></li>
-    </ol>
-
-    <!-- 9.1 · Tu descuento trabaja para ti -->
-    <div class="prov-block split">
-      <div class="split__copy">
-        <span class="eyebrow eyebrow--light reveal">Tu descuento, tu fidelización</span>
-        <h3 class="title title--light title--sm reveal">El descuento que pactas <span class="hl hl--teal">trae de vuelta</span> a tus compradores.</h3>
-        <p class="lead lead--light reveal">En lugar de pagar publicidad por cada comprador nuevo, en TuConsumo pactas un descuento por producto. El <b>40% de ese descuento</b> se convierte en puntos que se reparten como bonificaciones en las 5 capas de la comunidad que te compra.</p>
-        <ul class="prov-why reveal-stagger">
-          <li><span>♻️</span><div><b>Recompra</b><small>Tus compradores reciben 2% de vuelta y bonificaciones: tienen razones para volver.</small></div></li>
-          <li><span>📣</span><div><b>Recomendación</b><small>Quien prueba tu producto lo comparte con su comunidad desde su enlace.</small></div></li>
-          <li><span>🎯</span><div><b>Pagas por resultado</b><small>La comisión se pacta contigo y se aplica solo sobre ventas efectivas.</small></div></li>
-        </ul>
-      </div>
-      <div class="prov-sim card card--dark reveal">
-        <h3>Simula una venta</h3>
-        <label class="field field--light">
-          <span>Precio de tu producto</span>
-          <div class="money money--dark"><span>$</span><input type="text" inputmode="numeric" id="pvPrice" value="100.000" aria-label="Precio del producto en pesos"></div>
-        </label>
-        <label class="field field--light">
-          <span>Descuento que pactas: <b id="pvDiscOut">20%</b></span>
-          <input type="range" id="pvDisc" min="5" max="40" step="1" value="20">
-        </label>
-        <ol class="prov-sim__steps">
-          <li><span>Descuento que otorgas</span><b id="pvDesc">$20.000</b></li>
-          <li><span>40% se vuelve bonificación</span><b id="pvBonus">$8.000</b></li>
-          <li><span>Puntos para la comunidad</span><b id="pvPts">22 puntos</b></li>
-        </ol>
-        <p class="tiny tiny--light">Ilustrativo, según la liquidación de puntos de TuConsumo (descuento × 40% ÷ 360). La comisión de TuConsumo se pacta por separado en tu reunión comercial.</p>
-      </div>
-    </div>
-
-    <!-- 9.2 · Cómo te vinculas -->
-    <div class="prov-block split split--rev">
-      <div class="split__copy">
-        <span class="eyebrow eyebrow--light reveal">Vincúlate como proveedor</span>
-        <h3 class="title title--light title--sm reveal">De la reunión a tu primera venta en <span class="hl hl--teal">5 pasos</span>.</h3>
-        <ol class="prov-steps reveal-stagger">
-          <li><b>Reunión comercial</b><small>Agéndala por WhatsApp. Conocemos tu negocio y tus productos.</small></li>
-          <li><b>Acuerdo</b><small>Pactamos la comisión y el descuento por producto. Willy te acompaña con el contrato.</small></li>
-          <li><b>Registro</b><small>RUT, cédula y certificación bancaria.</small></li>
-          <li><b>Catálogo</b><small>Cada producto con 6 fotos, precio, stock real y código de barras GS1.</small></li>
-          <li><b>¡A vender!</b><small>Capacitación en la plataforma y tus productos visibles para toda la comunidad.</small></li>
-        </ol>
-      </div>
-      <div class="split__media reveal">
-        <figure class="media-card media-card--dark parallax"><img src="assets/img/reunion-comercial.webp" alt="Reunión comercial entre una asesora de TuConsumo y un proveedor" loading="lazy"></figure>
-      </div>
-    </div>
-
-    <!-- 9.3 · Operación: ficha y despacho -->
-    <div class="prov-block split">
-      <div class="split__media reveal">
-        <figure class="media-card media-card--dark parallax"><img src="assets/img/despacho.webp" alt="Proveedora entregando un pedido a la transportadora enlazada" loading="lazy"></figure>
-        <div class="prov-cats reveal-stagger" aria-label="Categorías del marketplace">
-          <span class="chip">🧴 Cuidado personal</span><span class="chip">🏠 Hogar</span><span class="chip">💄 Belleza</span><span class="chip">💻 Tecnología</span><span class="chip">🌿 Bienestar</span><span class="chip">🐾 Mascotas</span>
-        </div>
-      </div>
-      <div class="split__copy">
-        <span class="eyebrow eyebrow--light reveal">Así opera tu tienda</span>
-        <h3 class="title title--light title--sm reveal">Tú vendes y despachas. <span class="hl hl--teal">Nosotros recaudamos.</span></h3>
-        <div class="prov-ops reveal-stagger">
-          <article>
-            <h4>Antes de publicar</h4>
-            <ul class="checklist checklist--dark"><li>6 fotos por producto</li><li>Precio de venta</li><li>Stock real y actualizado</li><li>Código de barras GS1</li></ul>
-          </article>
-          <article>
-            <h4>Cuando te compran</h4>
-            <ul class="checklist checklist--dark"><li>La plataforma recauda el pago</li><li>Alistas y despachas en 1 a 3 días</li><li>Usas la transportadora enlazada</li><li>Facturas al comprador</li></ul>
-          </article>
-        </div>
-        <div class="prov-pay reveal"><span>💸</span><p>Cuando la venta se confirma como efectiva, recibes tu <b>saldo neto</b> en tu cuenta.</p></div>
-      </div>
-    </div>
-
-    <!-- 9.4 · Acompañamiento -->
-    <div class="prov-team reveal-stagger">
-      <article class="prov-team__card">
-        <img src="assets/img/willy-hero.webp" alt="Willy" loading="lazy">
-        <div><small>Willy</small><h4>Plataforma y crecimiento</h4><p>Te guía en la plataforma, te capacita y acompaña tu marketing y tráfico dentro del marketplace.</p></div>
-      </article>
-      <article class="prov-team__card">
-        <img src="assets/img/lina-soporte.webp" alt="Lina, asistente de soporte de TuConsumo" loading="lazy">
-        <div><small>Lina</small><h4>Soporte y postventa</h4><p>Te acompaña con devoluciones, soporte técnico y PQR para que tus compradores siempre tengan respuesta.</p></div>
-      </article>
-    </div>
-
-    <!-- 9.5 · Preguntas de proveedores -->
-    <div class="prov-faq-wrap">
-      <div class="prov-faq-head reveal">
-        <span class="eyebrow eyebrow--light">Preguntas de proveedores</span>
-        <h3 class="title title--light title--sm">Lo que más nos preguntan los negocios</h3>
-      </div>
-      <div class="faq faq--dark reveal-stagger">
-        <details open><summary>¿Cuánto cuesta vender en TuConsumo?</summary><p>No pagas inscripción ni mensualidad. La comisión se negocia contigo y se aplica solo sobre ventas efectivas.</p></details>
-        <details><summary>¿Qué documentos necesito?</summary><p>RUT, cédula y certificación bancaria. En la reunión comercial te confirmamos lo que aplica según tu tipo de negocio.</p></details>
-        <details><summary>¿Qué necesito para publicar un producto?</summary><p>6 fotos, precio, stock real y código de barras GS1. Willy te acompaña para dejar tu catálogo listo.</p></details>
-        <details><summary>¿Quién despacha y quién factura?</summary><p>Tú. Alistas y despachas en 1 a 3 días con la transportadora enlazada, y facturas al comprador. También respondes por la calidad, las garantías y la postventa.</p></details>
-        <details><summary>¿Cuándo recibo el dinero de mis ventas?</summary><p>La plataforma recauda el pago. Cuando la venta se confirma como efectiva, se liquida tu saldo neto a tu cuenta.</p></details>
-        <details><summary>¿Por qué mis compradores volverían?</summary><p>Porque reciben 2% de vuelta en cada compra personal y bonificaciones por las compras de su comunidad. Esas bonificaciones se alimentan del descuento que pactas, así que tu producto queda en el centro de su recompra.</p></details>
-      </div>
-    </div>
-
-    <div class="prov-bottom">
-      <div class="who reveal">
-        <div><h4>TuConsumo conecta y recauda</h4><ul><li>Exhibe y promociona productos</li><li>Willy te guía en la plataforma</li><li>Recauda ventas</li><li>Acompaña marketing y tráfico</li></ul></div>
-        <div><h4>Tú administras producto y entrega</h4><ul><li>Calidad y disponibilidad</li><li>Facturación al comprador</li><li>Alistamiento y despacho</li><li>Garantías y postventa</li></ul></div>
-      </div>
-      <div class="prov-cta reveal">
-        <div class="video-slot video-slot--dark" data-video="proveedores"></div>
-        <a class="btn btn--coral btn--lg btn--block js-wa" data-msg="Hola, tengo un negocio y quiero agendar una reunión comercial para vender en TuConsumo." data-track="proveedor_reunion" href="#" target="_blank" rel="noopener">Agendar reunión comercial</a>
-      </div>
+      <figure><img src="assets/img/proveedor-tienda.webp" alt="Proveedora mostrando su tienda en el marketplace TuConsumo" loading="lazy"></figure>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ============ 10 · BUENAS PRÁCTICAS ============ -->
 <section class="chapter" id="practicas" data-title="Buenas prácticas"
   data-willy="Recomendar no es presionar. Habla desde tu experiencia, sé transparente y nunca prometas ingresos garantizados. Así se construye confianza.">
   <div class="wrap">
     <div class="center-head">
-      <span class="eyebrow reveal">Capítulo 10 · Con confianza</span>
+      <span class="eyebrow reveal">Capítulo 09 · Con confianza</span>
       <h2 class="title reveal">Recomendar es <span class="hl">compartir</span>, no presionar.</h2>
     </div>
     <div class="dos reveal-stagger">
@@ -695,7 +563,7 @@
   data-willy="Estas son las preguntas que más me hacen. Si tienes otra, escríbenos por WhatsApp y con gusto te ayudamos.">
   <div class="wrap faq-wrap">
     <div class="faq-side reveal">
-      <span class="eyebrow">Capítulo 11 · Willy responde</span>
+      <span class="eyebrow">Capítulo 10 · Willy responde</span>
       <h2 class="title">Preguntas frecuentes</h2>
       <img src="assets/img/willy-lina.webp" alt="Willy y Lina, el equipo de acompañamiento de TuConsumo" loading="lazy">
       <p class="muted">¿No encuentras tu respuesta? <b>Lina</b>, nuestra asistente de soporte, te acompaña con devoluciones, soporte técnico y PQR.</p>
@@ -711,7 +579,7 @@
       <details><summary>¿Cómo retiro mi dinero?</summary><p>Tus bonificaciones llegan a tu billetera virtual: el 70% es transferible a tu cuenta bancaria y el 30% queda disponible para compras en el marketplace.</p></details>
       <details><summary>¿Qué necesito para registrarme?</summary><p>Completar el formulario y adjuntar RUT (con CIIU 8299), cédula al 150% y certificación bancaria. Si eres persona jurídica, también Cámara de Comercio y cédula del representante legal.</p></details>
       <details><summary>¿Qué pasa si dejo de comprar?</summary><p>Si pasan más de dos meses sin compra quedas inactivo: no sales del sistema ni pierdes tu posición, pero no puedes retirar bonificaciones hasta reactivarte con una nueva compra.</p></details>
-      <details><summary>Tengo un negocio, ¿puedo vender en TuConsumo?</summary><p>Sí. No pagas inscripción ni mensualidad; la comisión se negocia y se aplica solo sobre ventas efectivas. Agenda una reunión comercial y Willy te acompaña con el contrato, la plataforma y la capacitación.</p></details>
+      <details><summary>Tengo un negocio, ¿puedo vender en TuConsumo?</summary><p>Sí. No pagas inscripción ni mensualidad; la comisión se negocia y se aplica solo sobre ventas efectivas. Agenda una reunión comercial y Willy te acompaña con el contrato, la plataforma y la capacitación. <a href="proveedores/">Conoce todo para proveedores →</a></p></details>
     </div>
   </div>
 </section>
@@ -748,7 +616,7 @@
     </div>
     <div>
       <h4>Recorrido</h4>
-      <p><a href="#como-funciona">Cómo funciona</a> · <a href="#calculadora">Calculadora</a> · <a href="#registro">Registro</a> · <a href="#proveedores">Proveedores</a></p>
+      <p><a href="#como-funciona">Cómo funciona</a> · <a href="#calculadora">Calculadora</a> · <a href="#registro">Registro</a> · <a href="proveedores/">Proveedores</a></p>
     </div>
   </div>
   <div class="wrap">

@@ -1,13 +1,25 @@
 # TuConsumo · Landing de campaña con Willy
 
 Landing de aterrizaje para la campaña publicitaria de **TuConsumo.com.co**. Willy, el personaje
-virtual, guía al visitante en un recorrido de 13 capítulos por el marketplace y el modelo de
-bonificaciones (matriz 4 × 5), con calculadora de ingresos y espacios para sus videos.
+virtual, guía al visitante en un recorrido por el marketplace y el modelo de bonificaciones
+(matriz 4 × 5), con calculadora de ingresos y espacios para sus videos.
+
+El sitio tiene dos páginas, una por público, en el mismo dominio:
+
+| Ruta | Público | Archivo |
+|------|---------|---------|
+| `/` | Compradores y consultores (12 capítulos) | `index.html` |
+| `/proveedores/` | Negocios y marcas que quieren vender (6 capítulos) | `proveedores/index.html` |
+
+Las dos comparten estilos, configuración y scripts de `assets/`. La landing de compradores enlaza a
+la de proveedores desde el menú, un aviso antes de “Buenas prácticas”, la FAQ y el pie de página; la
+de proveedores enlaza de vuelta con “Soy comprador”.
 
 ## Estructura
 
 ```
-index.html              → página completa (13 capítulos)
+index.html              → landing de compradores (12 capítulos)
+proveedores/index.html  → landing de proveedores (6 capítulos)
 assets/css/styles.css   → estilos y animaciones
 assets/js/config.js     → ⚙️ ÚNICO archivo a editar: videos, enlaces, tracking, parámetros del plan
 assets/js/main.js       → interacciones (calculadora, perla, Willy, videos, medición)
@@ -32,12 +44,29 @@ cualquier hosting. Para probarlo localmente: `python3 -m http.server` y abrir ht
 | 7 | Billetera | 2% personal y regla 70/30 |
 | 8 | Mantente activo | Activo vs. en pausa |
 | 9 | Regístrate | 6 pasos, documentos, RUT CIIU 8299, $0 |
-| 10 | Proveedores | Vende, fideliza y crece; flujo, simulador de venta, vinculación en 5 pasos, operación y despacho, Willy y Lina, FAQ de proveedores y responsabilidades |
-| 11 | Buenas prácticas | Qué hacer y qué no |
-| 12 | Preguntas | FAQ |
-| 13 | Empieza | CTA final |
+| — | Aviso a proveedores | Banner que lleva a `/proveedores/` (no es capítulo) |
+| 10 | Buenas prácticas | Qué hacer y qué no |
+| 11 | Preguntas | FAQ |
+| 12 | Empieza | CTA final |
 
-Willy acompaña todo el recorrido con un globo flotante que cambia de mensaje en cada capítulo.
+### Recorrido de proveedores (`/proveedores/`)
+
+| # | Capítulo | Contenido |
+|---|----------|-----------|
+| 1 | Vende con nosotros | Vende, fideliza y crece; audio/video de Willy; $0 inscripción y mensualidad |
+| 2 | Por qué funciona | Publicidad vs. modelo TuConsumo; simulador de venta (descuento → 40% → puntos) |
+| 3 | Cómo opera | Flujo de 5 pasos, requisitos para publicar, despacho y liquidación |
+| 4 | Vincúlate | 5 pasos, responsabilidades de cada parte, Willy y Lina |
+| 5 | Preguntas | FAQ de proveedores |
+| 6 | Empieza | Agendar reunión comercial por WhatsApp o correo |
+
+Willy acompaña los dos recorridos con un globo flotante que cambia de mensaje en cada capítulo.
+
+## Dominio
+
+Todo usa rutas relativas, así que funciona en cualquier dominio sin cambios. Cuando el dominio esté
+listo, conviene poner URL absolutas en `og:image` / `twitter:image` de las dos páginas (las redes
+sociales no leen rutas relativas en la vista previa) y en el `url` del bloque `ld+json`.
 
 ## Subir los videos de Willy
 

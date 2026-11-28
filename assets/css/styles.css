@@ -972,3 +972,31 @@ html{scroll-padding-top:84px}
 .audio-player p{font-size:.9rem;margin:0}
 .audio-player audio{width:100%}
 .modal__frame video{object-fit:contain;background:#000}
+
+/* ==========================================================================
+   Página de proveedores (/proveedores/) y aviso de proveedores en la landing
+   ========================================================================== */
+.prov-page .prov-hero{padding-top:clamp(118px,15vh,160px)}
+.prov-hero .btn-row{margin:26px 0 22px}
+.prov-hero .prov-stats{margin-bottom:0}
+.chapter.dark+.chapter.dark{border-top:1px solid #ffffff12}
+.wrap>.prov-block:first-child{margin-top:0}
+.wrap>.prov-block:last-child{margin-bottom:0}
+.dark .center-head{margin-bottom:34px}
+.prov-page .prov-flow{margin-bottom:0}
+.prov-page #como-funciona .prov-block{margin-bottom:0}
+.prov-page #modelo .vs{margin:22px 0 0}
+.prov-page #vinculate .who{margin:clamp(40px,6vh,64px) 0 16px}
+.prov-page .prov-team{margin-bottom:0}
+.prov-page .prov-faq-wrap{margin-bottom:0}
+.prov-faq-head{display:grid;gap:14px;justify-items:start}
+/* aviso en la landing de compradores */
+.prov-teaser{position:relative;overflow:hidden;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(22px,4vw,48px);align-items:center;padding:clamp(24px,4vw,44px);border-radius:var(--r-lg);color:#fff;background:radial-gradient(700px 360px at 90% 0%,#1554b866,transparent 60%),radial-gradient(500px 300px at 0% 100%,#22c3c633,transparent 60%),linear-gradient(160deg,var(--navy-2),var(--deep));box-shadow:var(--shadow)}
+.prov-teaser .title{margin:10px 0 12px}
+.prov-teaser .btn-row{margin-top:22px}
+.prov-teaser figure{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid #ffffff22}
+.prov-teaser figure img{display:block;width:100%;height:auto}
+.prov-teaser__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.prov-teaser__chips span{padding:6px 12px;border-radius:999px;background:#ffffff14;border:1px solid #ffffff2b;font-weight:700;font-size:.82rem}
+.prov-teaser-wrap{padding:clamp(40px,7vh,70px) 0}
+@media (max-width:900px){.prov-teaser{grid-template-columns:1fr}}
